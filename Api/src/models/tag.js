@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const linker = require('./linker');
 module.exports = (sequelize, DataTypes) => {
   class tag extends Model {
     /**
@@ -10,11 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+
     }
   }
   tag.init({
-    titulo: DataTypes.STRING
+    titulo: DataTypes.STRING,
+    linker_id: {
+          type: DataTypes.INTEGER,
+          references: {
+            model: linker,
+            key: 'id',
+          },
+        }
   }, {
     sequelize,
     modelName: 'Tag',

@@ -6,6 +6,7 @@ module.exports = {
 
       await queryInterface.bulkInsert('tags', [{
         titulo: 'tags',
+        linker_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       }], {});

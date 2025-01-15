@@ -8,6 +8,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },linker_id:{
+        allowNull:false,
+        type: Sequelize.INTEGER,
+        references: { model: 'linkers', key: 'id'}
       },
       titulo: {
         type: Sequelize.STRING
