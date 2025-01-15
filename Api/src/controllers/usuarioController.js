@@ -1,10 +1,11 @@
-const Services = require("../services/Services");
-
 const Controller = require('./controller.js')
+const UsuariosServices = require('../services/UsuariosServices.js');
+
+const usuariosServices = new UsuariosServices();
 
 class UsuarioController extends Controller{
     constructor(){
-        super(Services)
+        super(usuariosServices)
     }
 }
 
