@@ -12,6 +12,20 @@ class Controller {
             //erro
         }
     }
+    async criaNovo(req, res){
+      const dadosCriado = req.body;
+      try{
+        const foiCriadoDados = await this.entidadeServices.criaRegistro(dadosCriado);
+        return res.status(201).json({
+          mensagem: `dados criados`,
+          dadosCriado,
+        })
+      }catch{
+        return res.status(500).json(
+          { 'error': 'ocorreu um erro'}
+        );
+      }
+    }
 
     async atualiza(req, res){
         const { id } = req.params;

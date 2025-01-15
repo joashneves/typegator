@@ -8,6 +8,9 @@ class Services {
     async pegaTodosOsRegistros() {
         return dataSource[this.model].findAll();
     }
+    async criaRegistro(dadosDoRegistro){
+      return dataSource[this.model].create(dadosDoRegistro)
+    }
 
     async atualizaRegistro(dadosAtualizados, id) {
         const listadeRegistroAtualizado = dataSource[this.model].update(dadosAtualizados, {
