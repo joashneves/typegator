@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Linker',
-    tableName: 'linkers'
+    tableName: 'linkers',
+    paranoid: true
   });
   return Linker;
 };

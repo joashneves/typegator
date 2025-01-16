@@ -8,8 +8,8 @@ class Controller {
         try {
             const listaDeRegistro = await this.entidadeServices.pegaTodosOsRegistros()
             return res.status(200).json(listaDeRegistro);
-        } catch (erro) {
-            //erro
+        } catch (error) {
+          return res.status(500).json({ erro: error.message });
         }
     }
     async criaNovo(req, res){
@@ -39,9 +39,20 @@ class Controller {
                 return res.status(400).json({mensagem: `registro não foi atualizado`});
             }
             return res.status(200).json({mensagem: `Foi atualizado`})
-        }catch(erro){
-            console.log(erro);
+        }catch(error){
+            console.log(error);
+            return res.status(500).json({ erro: error.message });
         }
+    }
+
+    async exclui(req, res) {
+      const { id } = req.params;
+      try {
+        await this.entidadeServices.excluiRegistro(Number(id));
+        return res.status(200).json({ mensagem: `id ${id} deletado` });
+      } catch (erro) {
+        return res.status(500).json({ erro: erro.message });
+      }
     }
 
 }

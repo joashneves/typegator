@@ -23,6 +23,10 @@ class Services {
         }
         return true;
     }
+    
+    async excluiRegistro(id) {
+      return dataSource[this.model].destroy({ where: { id: id } });
+    }
 }
 
 module.exports = Services;

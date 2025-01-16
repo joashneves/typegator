@@ -6,7 +6,8 @@ const tagController = new TagController();
 
 const router = Router();
 
-router.get('/tag', (req, res) => tagController.pegaTodos(req, res))
-router.post('/tag', requiresAuth(), (req, res) => tagController.criaNovo(req, res))
-
+router.get('/tag', (req, res) => tagController.pegaTodos(req, res));
+router.post('/tag', requiresAuth(), (req, res) => tagController.criaNovo(req, res));
+router.put('/tag', requiresAuth(), (req, res) => tagController.atualiza(req,res));
+router.delete('/tag', requiresAuth(), (req,res) => tagController.exclui(req,res));
 module.exports = router;

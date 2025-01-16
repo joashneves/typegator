@@ -18,6 +18,7 @@ class LinkerController extends Controller{
       })
       }catch(error){
         console.error(error)
+        return res.status(500).json({ erro: error.message });
       }
     }
     async criarPostagemLink (req, res){
@@ -30,7 +31,19 @@ class LinkerController extends Controller{
         })
       }catch(error){
         console.error(error)
+        return res.status(500).json({ erro: error.message });
       }
+    }
+    async exclui(req, res){
+      
+        const { id } = req.params;
+        try {
+          await this.entidadeServices.excluiRegistro(Number(id));
+          return res.status(200).json({ mensagem: `id ${id} deletado` });
+        } catch (erro) {
+          return res.status(500).json({ erro: erro.message });
+        }
+      
     }
 }
 
