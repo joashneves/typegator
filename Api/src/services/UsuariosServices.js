@@ -52,7 +52,24 @@ class UsuariosServices extends Services{
       console.log(`usuario encontrado : ${filtradoUser.id}`);
       return filtradoUser.id;
     }
-
+    async autenticadoUsuario(usuario_usuario, usuario_senha){
+        const senhaHash = usuario_senha.hashCode();
+        console.log(senhaHash)
+        const filtradoUser = await dataSource[this.model].findOne({
+            where: { 
+                usuario: usuario_usuario, 
+                senha: senhaHash 
+            }
+        });
+        console.log(`${filtradoUser}`)
+        if (!filtradoUser) {
+            throw new Error("Usuário não encontrado ou senha incorreta");
+        }
+    
+        console.log(`usuario encontrado : ${filtradoUser.id}`);
+        return filtradoUser;
+      
+    }
 }
 
 module.exports = UsuariosServices;

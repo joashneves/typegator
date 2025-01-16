@@ -7,3 +7,4 @@ o Objetivo principal do projeto é testar minhas habilidades tentando criar meu 
 # Dias 
 
 - [Dia 1](/docs/dia1.md)
+- [Dia 2](/docs/dia2.md)

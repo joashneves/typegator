@@ -9,6 +9,7 @@ class Controller {
             const listaDeRegistro = await this.entidadeServices.pegaTodosOsRegistros()
             return res.status(200).json(listaDeRegistro);
         } catch (error) {
+          console.log(error)
           return res.status(500).json({ erro: error.message });
         }
     }

@@ -9,7 +9,6 @@ class LinkerController extends Controller{
     }
     async listaPostagemPorParam(req, res){
       const titulo = req.params.titulo;
-      console.log(titulo)
       try{
        const linksFiltrados = await linkerServices.procurarLinkParamentro(titulo)
        return res.status(201).json({
