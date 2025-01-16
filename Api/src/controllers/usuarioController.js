@@ -7,6 +7,26 @@ class UsuarioController extends Controller{
     constructor(){
         super(usuariosServices)
     }
+
+    async criarUsuario(req, res){
+        const dadosUsuario = req.body;
+        try{
+            const novoUsuario = await usuariosServices.criarUsuario(dadosUsuario)
+            return res.status(201).json({
+                mensagem: `dados criados`,
+                novoUsuario,
+              })
+        }
+        catch(error){
+            console.error(error)
+            return res.status(500).json(
+                { 'error': 'ocorreu um erro',
+                    messagem: error.type
+                }
+              );
+        }
+
+    }
 }
 
 module.exports = UsuarioController;

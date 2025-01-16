@@ -7,7 +7,7 @@ module.exports = {
       nome: 'usuario da silva',
       usuario: 'usuario',
       email: 'email@exemplo.com',
-      senha: 'senha123',
+      senha: '83053329',
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});

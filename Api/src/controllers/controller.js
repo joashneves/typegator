@@ -20,9 +20,12 @@ class Controller {
           mensagem: `dados criados`,
           dadosCriado,
         })
-      }catch{
+      }catch(error){
+        console.error(error)
         return res.status(500).json(
-          { 'error': 'ocorreu um erro'}
+          { 'error': 'ocorreu um erro',
+            messagem: error.messagem
+          }
         );
       }
     }

@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     },
-    senha: DataTypes.STRING
+    senha: {
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Usuario',
