@@ -1,7 +1,7 @@
 const Services = require("./Services.js");
 const dataSource = require('../models');
 const UsuariosServices = require('./UsuariosServices.js')
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 
 const usuariosServices = new UsuariosServices();
 class LinkerServices extends Services {
@@ -14,7 +14,7 @@ class LinkerServices extends Services {
     try {
       const linksFiltrados = await dataSource[this.model].findAll({
         where: {
-          titulo: filtrotitulo,
+          titulo: { [Sequelize.Op.like]: `%${filtrotitulo}%` },
         },
       });
   
