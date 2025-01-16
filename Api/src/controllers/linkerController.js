@@ -7,6 +7,19 @@ class LinkerController extends Controller{
     constructor(){
         super(linkerServices)
     }
+    async listaPostagemPorParam(req, res){
+      const titulo = req.params.titulo;
+      console.log(titulo)
+      try{
+       const linksFiltrados = await linkerServices.procurarLinkParamentro(titulo)
+       return res.status(201).json({
+        mensagem: `dados Encontrados`,
+        linksFiltrados,
+      })
+      }catch(error){
+        console.error(error)
+      }
+    }
     async criarPostagemLink (req, res){
       const dadosDoLink = req.body;
       try{
