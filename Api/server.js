@@ -1,5 +1,7 @@
 require('dotenv').config();
 const app = require('./src/app.js');
+const manipulador404 = require('./src/middlewares/manipulador404.js');
+const manipuladorDeErros = require('./src/middlewares/manipuladorDeErros.js')
 const { auth } = require('express-openid-connect');
 
 const config = {
@@ -27,7 +29,8 @@ app.get('/status', (req, res) => {
   }
 });
 const PORT = 3000;
-
+app.use(manipuladorDeErros);
+app.use(manipulador404);
 app.listen(PORT, () => {
   console.log('servidor escutando!');
 });

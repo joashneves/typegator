@@ -12,4 +12,4 @@ class ErroBase extends Error{
   }
 }
 
-emodule.exports = ErroBase;
+module.exports = ErroBase;
