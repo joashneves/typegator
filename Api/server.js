@@ -19,8 +19,16 @@ app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
+app.get('/status', (req, res) => {
+  if (req.oidc.isAuthenticated()) {
+      res.send('Usuário autenticado');
+  } else {
+      res.send('Usuário não autenticado');
+  }
+});
 const PORT = 3000;
 
 app.listen(PORT, () => {
   console.log('servidor escutando!');
 });
+

@@ -11,10 +11,12 @@ class UsuarioController extends Controller{
     async criarUsuario(req, res){
         const dadosUsuario = req.body;
         try{
+            const usuarioLogado = req.oidc.user;
             const novoUsuario = await usuariosServices.criarUsuario(dadosUsuario)
             return res.status(201).json({
                 mensagem: `dados criados`,
                 novoUsuario,
+                auth0Id: req.oidc.user.sub,
               })
         }
         catch(error){
