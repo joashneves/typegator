@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import lupa from '../../assets/lupa.svg'
+import { usePesquisarContext } from '../../hooks/usePesquisarContext';
 
 export default function Pesquisa(){
+
+  const [termoPesquisa, setTermoPesquisa] = useState("");
+  const { links } = usePesquisarContext(termoPesquisa);
+
+  const handleChange = (event) => {
+    setTermoPesquisa(event.target.value); // Atualiza o termo de pesquisa
+  };
+
   return(
     <>
     <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -13,6 +23,8 @@ export default function Pesquisa(){
           borderRadius: '5px',
           border: '1px solid #ccc',
         }} 
+        value={termoPesquisa}
+        onChange={handleChange} // Atualiza o estado ao digitar
       />
       <img 
         src={lupa} 

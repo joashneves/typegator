@@ -10,18 +10,15 @@ class LinkerServices extends Services {
   }
 
   async procurarLinkParamentro(filtrotitulo) {
-    console.log(filtrotitulo);
     try {
+      const whereCondition = filtrotitulo
+        ? { titulo: { [Sequelize.Op.like]: `%${filtrotitulo}%` } }
+        : {};
+  
       const linksFiltrados = await dataSource[this.model].findAll({
-        where: {
-          titulo: { [Sequelize.Op.like]: `%${filtrotitulo}%` },
-        },
+        where: whereCondition,
       });
-
-      return {
-        sucesso: linksFiltrados.length > 0,
-        dados: linksFiltrados,
-      };
+      return linksFiltrados || []
     } catch (error) {
       console.error("Erro ao procurar link:", error.message);
       throw error;

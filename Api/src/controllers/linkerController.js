@@ -11,10 +11,7 @@ class LinkerController extends Controller{
       const titulo = req.params.titulo;
       try{
        const linksFiltrados = await linkerServices.procurarLinkParamentro(titulo)
-       return res.status(201).json({
-        mensagem: `dados Encontrados`,
-        linksFiltrados,
-      })
+       return res.status(201).json(linksFiltrados)
       }catch(error){
         console.error(error)
         return res.status(500).json({ erro: error.message });

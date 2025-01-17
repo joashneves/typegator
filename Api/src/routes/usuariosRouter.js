@@ -3,9 +3,10 @@ const UsuarioController = require('../controllers/usuarioController');
 const autenticadoToken = require('../middlewares/autenticadoToken.js')
 const router = Router();
 const usuarioController = new UsuarioController();
+const cors = require('cors');
 
-router.get('/usuario', autenticadoToken,(req, res) => usuarioController.pegaTodos(req, res));
-router.post('/usuario', autenticadoToken, (req, res) => usuarioController.criarUsuario(req, res));
-router.put('/usuario', autenticadoToken, (req, res) => usuarioController.atualizaUsuario(req, res))
-router.put('/login', (req, res)=> usuarioController.login(req, res))
+router.get('/usuario', cors(), autenticadoToken,(req, res) => usuarioController.pegaTodos(req, res));
+router.post('/usuario', cors(), autenticadoToken, (req, res) => usuarioController.criarUsuario(req, res));
+router.put('/usuario', cors(),autenticadoToken, (req, res) => usuarioController.atualizaUsuario(req, res))
+router.put('/login',cors(), (req, res)=> usuarioController.login(req, res))
 module.exports = router;
