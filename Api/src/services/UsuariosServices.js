@@ -20,8 +20,24 @@ class UsuariosServices extends Services{
         super('Usuario')
     }
 
+    
+  async buscarPorNome(usuario_usuario) {
+    try {
+      const usuario = await dataSource.Usuario.findOne({
+        where: { usuario: usuario_usuario },
+      });
+      return usuario; // Se encontrar, retorna o usuário; se não, retorna null.
+    } catch (error) {
+      throw new Error('Erro ao buscar o usuário');
+    }
+  }
+  
     async criarUsuario(dadosDoRegistro){
+      
         const {nome, usuario, email, senha} = dadosDoRegistro;
+        if (!nome || !usuario || !email || !senha) {
+          throw new Error("Todos os campos ('nome', 'usuario', 'email', 'senha') são obrigatórios.");
+        }
         const senhaHash = senha.hashCode()
         const novosDados = {
             nome,
@@ -36,6 +52,9 @@ class UsuariosServices extends Services{
 
 
     async buscarPorDados(usuario_usuario, usuario_senha){
+      if (usuario_usuario === undefined || usuario_senha === undefined) {
+        throw new Error("Favor fornecer paramentros")
+      }
       const senhaHash = usuario_senha.hashCode();
       console.log(senhaHash)
       const filtradoUser = await dataSource[this.model].findOne({
@@ -53,6 +72,9 @@ class UsuariosServices extends Services{
       return filtradoUser.id;
     }
     async autenticadoUsuario(usuario_usuario, usuario_senha){
+      if (usuario_usuario === undefined || usuario_senha === undefined) {
+        throw new Error("Favor fornecer paramentros")
+      }
         const senhaHash = usuario_senha.hashCode();
         console.log(senhaHash)
         const filtradoUser = await dataSource[this.model].findOne({

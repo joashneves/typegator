@@ -13,23 +13,23 @@ const config = {
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL
 };
-// Cors
-var allowlist = ['http://localhost:5173', 'http://example2.com']
-var corsOptionsDelegate = function (req, callback) {
-  var corsOptions;
-  if (allowlist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false } // disable CORS for this request
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
+const corsOptions = {
+  origin: ['http://localhost'],
+  allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Methods", "Access-Control-Request-Headers"],
+  credentials: true,
+  enablePreflight: true
 }
 
-// Adicionando o middleware CORS globalmente
-app.use(cors(corsOptionsDelegate));
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions))
 
+app.all('', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost");
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    //Auth Each API Request created by user.
+    next();
+});
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');

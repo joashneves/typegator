@@ -9,24 +9,33 @@ class UsuarioController extends Controller{
         super(usuariosServices)
     }
 
-    async criarUsuario(req, res){
-        const dadosUsuario = req.body;
-        try{
-            const novoUsuario = await usuariosServices.criarUsuario(dadosUsuario)
-            return res.status(201).json({
-                mensagem: `dados criados`,
-                novoUsuario,
-              })
+    
+    async criarUsuario(req, res) {
+      const dadosUsuario = req.body;
+      try {
+        // Verifica se já existe um usuário com o mesmo nome
+        const usuarioExistente = await usuariosServices.buscarPorNome(dadosUsuario.usuario);
+        
+        if (usuarioExistente) {
+          // Se o usuário já existir, retorna um erro
+          return res.status(400).json({ 
+            error: 'Já existe um usuário com esse nome.',
+          });
         }
-        catch(error){
-            console.error(error)
-            return res.status(500).json(
-                { 'error': 'ocorreu um erro',
-                    messagem: error.type
-                }
-              );
-        }
-
+  
+        // Se não existir, cria o novo usuário
+        const novoUsuario = await usuariosServices.criarUsuario(dadosUsuario);
+        return res.status(201).json({
+          mensagem: 'Usuário criado com sucesso.',
+          novoUsuario,
+        });
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+          error: 'Ocorreu um erro.',
+          mensagem: error.type,
+        });
+      }
     }
 
     async login(req, res){
