@@ -1,0 +1,11 @@
+.cabecario{
+  display: flex;
+  width: 100vw;
+  flex-direction: row-reverse;
+  background-color: #1e1e1e;
+}
+.icone{
+  padding: 1rem;
+  width: 36px;
+  height: 36px;
+}

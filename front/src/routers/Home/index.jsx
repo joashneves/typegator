@@ -1,10 +1,12 @@
-import styles from './Home.module.css';
+import Header from '../../components/header';
+import Pesquisa from '../../components/pesquisa';
 
 export default function Home(){
   return(
     <>
-    <h1>Home</h1>
-    <input className={styles.buscar}></input>
+    <Header/>
+    <br></br>
+    <Pesquisa/>
     </>
   )
 }
