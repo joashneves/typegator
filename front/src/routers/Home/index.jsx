@@ -14,6 +14,7 @@ export default function Home() {
         const response = await axios.get("http://localhost:3000/link");
         setLinks(response.data); 
         setLoading(false);
+        console.log(links)
       } catch (error) {
         console.error("Erro ao buscar os links:", error);
         setLoading(false);
