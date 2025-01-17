@@ -9,7 +9,7 @@ export default function Post() {
         <h1>post</h1>
         <div className={styles.postInput}>
           <label>
-            Nome de usuario
+            Titulo
           </label>
             <input type="text"></input>
         </div>
