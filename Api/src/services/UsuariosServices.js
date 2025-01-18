@@ -20,7 +20,6 @@ class UsuariosServices extends Services{
         super('Usuario')
     }
 
-    
   async buscarPorNome(usuario_usuario) {
     try {
       const usuario = await dataSource.Usuario.findOne({

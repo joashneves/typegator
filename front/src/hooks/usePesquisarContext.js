@@ -9,7 +9,7 @@ export const usePesquisarContext = (pesquisa = "") => {
     const fetchLinks = async () => {
       try {
         // Se não houver pesquisa, usa o endpoint padrão "/link/"
-        const endpoint = pesquisa ? `http://localhost:3000/link/${pesquisa}` : `http://localhost:3000/link`;
+        const endpoint = pesquisa ? `/api/link/${pesquisa}` : `/api/link`;
         const response = await axios.get(endpoint);
         console.log(endpoint)
         if (Array.isArray(response.data)) {

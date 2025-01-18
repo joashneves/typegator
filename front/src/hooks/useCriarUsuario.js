@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 
 export const useCadastrarUsuario = () => {
   const [form, setForm] = useState({
@@ -42,20 +41,23 @@ export const useCadastrarUsuario = () => {
         email,
         senha,
       };
-
-      const response = await axios.post("http://localhost:3000/usuario", { 
+      console.log(dados)
+      // Usando fetch para enviar os dados
+      const response = await fetch('/api/usuario', {
+        method: 'POST',
         headers: {
-          'Content-Type': 'application/json; charset=utf-8', // Cabeçalho Content-Type com charset
-         // 'Content-Length': JSON.stringify(dados).length.toString(), // Cabeçalho Content-Length
-          //'Connection': 'keep-alive', // Manter a conexão viva
-          //'Keep-Alive': 'timeout=60', // Timeout para manter a conexão ativa por 60 segundos
+          'Content-Type': 'application/json',
         },
-        body: {
-              dados
-        }
+        body: JSON.stringify(dados), // Convertendo o objeto para string JSON
+        mode: "cors",
       });
+      
+      if (!response.ok) {
+        throw new Error("Erro ao cadastrar usuário.");
+      }
 
-      setMessage(response.data.message); // Mensagem de sucesso
+      const responseData = await response.json();
+      setMessage(responseData.message); // Mensagem de sucesso
       setForm({ nome: "", usuario: "", email: "", senha: "", confirmaSenha: "" }); // Limpa o formulário
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);

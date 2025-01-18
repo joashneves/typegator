@@ -14,6 +14,7 @@ class UsuarioController extends Controller{
       const dadosUsuario = req.body;
       try {
         // Verifica se já existe um usuário com o mesmo nome
+        console.log(dadosUsuario)
         const usuarioExistente = await usuariosServices.buscarPorNome(dadosUsuario.usuario);
         
         if (usuarioExistente) {
