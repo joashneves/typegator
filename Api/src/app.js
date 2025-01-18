@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('./routes');
 const app = express();
+const path = require('path');
 
 // Middleware para servir os arquivos estáticos do frontend
 app.use(express.static(path.join(__dirname, 'front', 'dist')));
