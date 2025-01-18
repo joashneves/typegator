@@ -1,0 +1,27 @@
+{
+  "name": "typegator",
+  "version": "1.0.0",
+  "description": "Um quase motor de buscar, um projeto para mostrar minhas quase habilidades",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joashneves/typegator/tree/main"
+  },
+  "scripts": {
+    "start:api": "cd Api && npm start",
+    "start:front": "cd front && npm start",
+    "start": "concurrently \"npm run start:api\" \"npm run start:front\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typegator": "file:"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
