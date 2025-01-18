@@ -8,3 +8,5 @@ o Objetivo principal do projeto é testar minhas habilidades tentando criar meu 
 
 - [Dia 1](/docs/dia1.md)
 - [Dia 2](/docs/dia2.md)
+- [Dia 3](/docs/dia3.md)
+- [Dia 4](/docs/dia4.md)
