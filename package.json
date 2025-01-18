@@ -14,7 +14,7 @@
     "start:api": "cd Api && npm start",
     "start:front": "cd front && npm start",
     "start": "concurrently \"npm run start:api\" \"npm run start:front\"",
-    "build:api": "cd Api && npm install && npm run build",
+    "build:api": "cd Api && npm install && npm run start",
     "build:front": "cd front && npm install && npm run build",
     "build": "npm run build:api && npm run build:front"
   },

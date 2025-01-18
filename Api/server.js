@@ -20,18 +20,6 @@ function setCorsHeaders(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Cabeçalhos permitidos
   next();
 }
-// req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
-
-app.get('/status', (req, res) => {
-  if (req.oidc.isAuthenticated()) {
-      res.send('Usuário autenticado');
-  } else {
-      res.send('Usuário não autenticado');
-  }
-});
 
 app.options('*', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
