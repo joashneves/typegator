@@ -14,8 +14,7 @@
     "start:api": "nodemon server.js",
     "start:front": "cd front && npm start",
     "start": "concurrently \"npm run start:api\" \"npm run start:front\"",
-    "build:front": "cd front && npm install && npm run build",
-    "build": "npm run build:front"
+    "build": "cd front && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
