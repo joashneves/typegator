@@ -13,7 +13,8 @@ const buildDir = path.join(__dirname, 'front', 'dist');
 
 if (!fs.existsSync(buildDir)) {
   console.log('Pasta build não encontrada. Iniciando o build...');
-  exec('cd front && npm install && npm run build', (error, stdout, stderr) => {
+  exec('npm install -g vite && cd front && npm install && npm run build', (error, stdout, stderr) => {
+    console.log('Executando')
     if (error) {
       console.error(`Erro ao realizar o build: ${error.message}`);
       return;
