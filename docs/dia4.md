@@ -16,3 +16,7 @@ A ideia de ter um mono repository foi para poder ter uma unica url, e fazendo o 
 # Configurando a square com o github
 
 Coloquei para que cada deploy na main, faça ele puxar, sem a necessidade de eu ficar atualizando manualmente, e só por 15 reais, foi uma mão na roda.
+
+# Colocando no ar
+
+Coloquei no ar o site esta [aqui](https://typergator.squareweb.app/) e tambem coloquei as rotas ligada pra API como /api/*
