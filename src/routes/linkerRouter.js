@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const LinkerController = require('../controllers/linkerController');
+const LinkerController = require('../controllers/linkerController.js');
 const autenticadoToken = require('../middlewares/autenticadoToken.js')
 const linkerController = new LinkerController();
 

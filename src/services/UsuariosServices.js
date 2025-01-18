@@ -1,5 +1,5 @@
 const Services = require('./Services.js')
-const dataSource = require('../models');
+const dataSource = require('../models/index.js');
 const jwt = require('jsonwebtoken');
 const token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 

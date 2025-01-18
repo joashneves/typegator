@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const UsuarioController = require('../controllers/usuarioController');
+const UsuarioController = require('../controllers/usuarioController.js');
 const autenticadoToken = require('../middlewares/autenticadoToken.js')
 const router = Router();
 const usuarioController = new UsuarioController();

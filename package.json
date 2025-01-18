@@ -11,7 +11,7 @@
     "url": "https://github.com/joashneves/typegator/tree/main"
   },
   "scripts": {
-    "start:api": "cd Api && npm start",
+    "start:api": "nodemon server.js",
     "start:front": "cd front && npm start",
     "start": "concurrently \"npm run start:api\" \"npm run start:front\"",
     "build:front": "cd front && npm install && npm run build",
@@ -21,9 +21,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "typegator": "file:"
+    "typegator": "file:",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-cache-controller": "^1.1.0",
+    "express-jwt": "^8.5.1",
+    "express-openid-connect": "^2.17.1",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "sequelize-cli": "^6.6.2"
   }
+  
 }

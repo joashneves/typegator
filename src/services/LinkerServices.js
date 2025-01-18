@@ -1,5 +1,5 @@
 const Services = require("./Services.js");
-const dataSource = require("../models");
+const dataSource = require("../models/index.js");
 const UsuariosServices = require("./UsuariosServices.js");
 const { Op, Sequelize } = require("sequelize");
 

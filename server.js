@@ -4,6 +4,7 @@ const manipulador404 = require('./src/middlewares/manipulador404.js');
 const manipuladorDeErros = require('./src/middlewares/manipuladorDeErros.js')
 const express = require('express');
 const { auth } = require('express-openid-connect');
+const path = require('path')
 //JWT
 const config = {
   authRequired: false,
@@ -13,6 +14,7 @@ const config = {
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL
 };
+app.use(auth(config));
 
 function setCorsHeaders(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*'); // Permite qualquer origem
@@ -20,6 +22,17 @@ function setCorsHeaders(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Cabeçalhos permitidos
   next();
 }
+// Servindo arquivos estáticos da pasta 'front/dist'
+app.use(express.static(path.join(__dirname, 'front', 'dist')));
+
+// Rota para a raiz (/) que serve o index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'front', 'dist', 'index.html'));
+});
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'none'; font-src 'self' https://fonts.gstatic.com;");
+  next();
+});
 
 app.options('*', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,7 +43,8 @@ app.options('*', (req, res) => {
 
 app.use(setCorsHeaders); // Adiciona os cabeçalhos CORS antes das rotas
 app.use(express.json()); // Processa o JSON das requisições
-const PORT = 3000;
+
+const PORT = process.env.PORT || 3000;
 
 app.use(manipuladorDeErros);
 app.use(manipulador404);
