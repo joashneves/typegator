@@ -18,3 +18,9 @@
   border: 1px solid #f1f1f1;
   width: 60vw;
 }
+.loginBotao{
+  margin: 1rem;
+}
+.loginBotao:hover{
+  cursor: pointer;
+}

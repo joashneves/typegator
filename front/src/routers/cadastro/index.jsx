@@ -65,9 +65,14 @@ export default function Cadastro() {
         {error && <div className="error">{error}</div>} {/* Exibe erro, se houver */}
         {message && <div className="success">{message}</div>} {/* Exibe mensagem de sucesso, se houver */}
         <div className={styles.cadastroInput}>
-          <button onClick={handleSubmit} disabled={loading}>
-            {loading ? "Cadastrando..." : "Cadastrar"}
-          </button>
+          <input
+          className={styles.cadastrarBotao} 
+          type="button"
+           onClick={handleSubmit}
+           disabled={loading}
+          value={loading ? "Cadastrando..." : "Cadastrar"}
+          />
+            
         </div>
       </div>
     </>

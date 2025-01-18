@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import Header from "../../components/header";
 import styles from "./login.module.css";
 import { useCadastrarUsuarioContext } from "../../hooks/useCadastrarUsuarioContext"; // Importando o hook
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const {
@@ -12,6 +13,13 @@ export default function Login() {
     error,
     message,
   } = useCadastrarUsuarioContext();
+
+  
+    useEffect(() =>{
+      const user = window.sessionStorage.getItem('usuario');
+      const password = window.sessionStorage.getItem('senha');
+      console.log(user, password);
+    },[])
 
   return (
     <>
@@ -37,7 +45,7 @@ export default function Login() {
           />
         </div>
         <div className={styles.loginInput}>
-          <input
+          <input className={styles.loginBotao}
             type="button"
             value={loading ? "Carregando..." : "Login"}
             onClick={handleLogin}
@@ -46,7 +54,14 @@ export default function Login() {
         </div>
         {error && <div className={styles.error}>{error}</div>}
         {message && <div className={styles.message}>{message}</div>}
+
+        <Link to='/cadastro'>
+        <div className={styles.linkCadastro}>
+          <p>Se não tiver uma conta clique aqui.</p>
+        </div>
+            </Link>
       </div>
+      
     </>
   );
 }

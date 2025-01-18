@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import styles from './LinkPost.module.css';
 
 export default function LinkPost({ titulo, link, descricao }) {
   return (
     <>
+    <Link to={link}>
     <div className={styles.componenteLink}>
     
     <div className={styles.componenteDescricao}>
@@ -11,6 +13,7 @@ export default function LinkPost({ titulo, link, descricao }) {
       <div>{descricao}</div>
     </div>
     </div>
+    </Link>
     </>
   );
 }

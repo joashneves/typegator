@@ -1,19 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export const useCriarLinkContext = (
-  titulo, 
-  link, 
-  descricao, 
-  usuario, 
-  senha, 
-  setLinks
-) => {
+export const useCriarLinkContext = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
-
-  const handleSubmit = async () => {
+  const navigator = useNavigate()
+  const handleSubmit = async ({ titulo, link, descricao, usuario, senha, token }) => {
     if (!titulo || !link || !descricao) {
       setError("Todos os campos devem ser preenchidos!");
       return;
@@ -24,23 +18,24 @@ export const useCriarLinkContext = (
 
     try {
       const dados = {
-        "usuario_usuario": usuario,
-        "usuario_senha": senha,
-        "titulo": titulo,
-        "descricao": descricao,
-        "link": link,
+        usuario_usuario: usuario,
+        usuario_senha: senha,
+        titulo,
+        descricao,
+        link,
       };
-
+      console.log(dados, token)
       const response = await axios.post("/api/link", dados, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         mode: "cors",
       });
 
       setMessage("Postagem criada com sucesso!");
-      setLinks(response.data); // Atualiza os links se necessário
-
+      navigator('/')
+      return response.data;
     } catch (error) {
       console.error("Erro ao criar postagem:", error);
       setError("Erro ao criar postagem. Tente novamente.");

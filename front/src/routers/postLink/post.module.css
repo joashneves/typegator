@@ -18,3 +18,9 @@
   border: 1px solid #f1f1f1;
   width: 60vw;
 }
+.linkcadastrarBotao{
+  margin: 1rem;
+}
+.linkcadastrarBotao:hover{
+  cursor: pointer;
+}

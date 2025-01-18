@@ -13,7 +13,7 @@ export default function Header(){
       <Link to='/post'>
       <img className={styles.icone} src={adicionar} alt='Adicionar post' />
       </Link>
-      <Link to='/cadastro'>
+      <Link to='/login'>
       <img className={styles.icone} src={icon} alt='Imagem do icone' />
       </Link>
     </div>
