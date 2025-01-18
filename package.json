@@ -21,7 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "typegator": "file:",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-cache-controller": "^1.1.0",
@@ -30,12 +30,12 @@
     "https": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "sequelize": "^6.37.5",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "typegator": "file:"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
     "nodemon": "^3.1.9",
     "sequelize-cli": "^6.6.2"
   }
-  
 }

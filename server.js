@@ -29,10 +29,6 @@ app.use(express.static(path.join(__dirname, 'front', 'dist')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'front', 'dist', 'index.html'));
 });
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "default-src 'none'; font-src 'self' https://fonts.gstatic.com;");
-  next();
-});
 
 app.options('*', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
