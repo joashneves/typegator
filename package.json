@@ -15,7 +15,10 @@
   },
   "scripts": {
     "dev": "concurrently \"cd front && npm run dev\" \"nodemon server.js\"",
+    "test": " concurrently \"nodemon server.js\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand --verbose",
+    "migrations:up": "npx sequelize-cli db:migrate",
+    "migrations:down": "npx sequelize-cli db:migrate:undo:all",
     "start:api": "nodemon server.js",
     "start:front": "cd front && npm start",
   "start": "NODE_ENV=production node server.js",
