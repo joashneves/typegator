@@ -18,6 +18,10 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
+      descricao:{
+        type: Sequelize.STRING,
+        defaultValue: 'Descrição',
+      },
       senha: {
         type: Sequelize.STRING,
       },
