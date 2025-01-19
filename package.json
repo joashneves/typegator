@@ -18,10 +18,10 @@
     "test:watch": "jest --watchAll --runInBand --verbose",
     "start:api": "nodemon server.js",
     "start:front": "cd front && npm start",
-    "start": "concurrently \"npm run start:api\" \"npm run start:front\"",
+  "start": "NODE_ENV=production node server.js",
     "lint:prettier:check": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
-    "prepare": "husky",
+  "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi",
     "commit": "cz",
     "build": "cd front && npm install && npm run build"
   },
