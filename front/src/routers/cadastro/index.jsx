@@ -3,14 +3,8 @@ import styles from "./cadastro.module.css";
 import { useCadastrarUsuario } from "../../hooks/useCriarUsuario"; // O caminho pode variar
 
 export default function Cadastro() {
-  const {
-    form,
-    handleChange,
-    handleSubmit,
-    loading,
-    error,
-    message,
-  } = useCadastrarUsuario();
+  const { form, handleChange, handleSubmit, loading, error, message } =
+    useCadastrarUsuario();
 
   return (
     <>
@@ -62,17 +56,18 @@ export default function Cadastro() {
             onChange={handleChange}
           />
         </div>
-        {error && <div className="error">{error}</div>} {/* Exibe erro, se houver */}
-        {message && <div className="success">{message}</div>} {/* Exibe mensagem de sucesso, se houver */}
+        {error && <div className="error">{error}</div>}{" "}
+        {/* Exibe erro, se houver */}
+        {message && <div className="success">{message}</div>}{" "}
+        {/* Exibe mensagem de sucesso, se houver */}
         <div className={styles.cadastroInput}>
           <input
-          className={styles.cadastrarBotao} 
-          type="button"
-           onClick={handleSubmit}
-           disabled={loading}
-          value={loading ? "Cadastrando..." : "Cadastrar"}
+            className={styles.cadastrarBotao}
+            type="button"
+            onClick={handleSubmit}
+            disabled={loading}
+            value={loading ? "Cadastrando..." : "Cadastrar"}
           />
-            
         </div>
       </div>
     </>

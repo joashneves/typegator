@@ -1,8 +1,6 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-const linker = require('./linker');
+"use strict";
+const { Model } = require("sequelize");
+const linker = require("./linker");
 module.exports = (sequelize, DataTypes) => {
   class tag extends Model {
     /**
@@ -10,24 +8,25 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-
-    }
+    static associate(models) {}
   }
-  tag.init({
-    titulo: DataTypes.STRING,
-    linker_id: {
-          type: DataTypes.INTEGER,
-          references: {
-            model: linker,
-            key: 'id',
-          },
-        }
-  }, {
-    sequelize,
-    modelName: 'Tag',
-    tableName: 'tags',
-    paranoid: true
-  });
+  tag.init(
+    {
+      titulo: DataTypes.STRING,
+      linker_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: linker,
+          key: "id",
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "Tag",
+      tableName: "tags",
+      paranoid: true,
+    },
+  );
   return tag;
 };

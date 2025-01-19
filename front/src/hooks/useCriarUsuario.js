@@ -41,24 +41,30 @@ export const useCadastrarUsuario = () => {
         email,
         senha,
       };
-      console.log(dados)
+      console.log(dados);
       // Usando fetch para enviar os dados
-      const response = await fetch('/api/usuario', {
-        method: 'POST',
+      const response = await fetch("/api/usuario", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(dados), // Convertendo o objeto para string JSON
         mode: "cors",
       });
-      
+
       if (!response.ok) {
         throw new Error("Erro ao cadastrar usuário.");
       }
 
       const responseData = await response.json();
       setMessage(responseData.message); // Mensagem de sucesso
-      setForm({ nome: "", usuario: "", email: "", senha: "", confirmaSenha: "" }); // Limpa o formulário
+      setForm({
+        nome: "",
+        usuario: "",
+        email: "",
+        senha: "",
+        confirmaSenha: "",
+      }); // Limpa o formulário
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
       setError("Erro ao cadastrar usuário. Tente novamente.");

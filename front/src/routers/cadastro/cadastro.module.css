@@ -1,4 +1,4 @@
-.cadastroFormulario{
+.cadastroFormulario {
   padding: 1rem;
   margin: 1rem;
 
@@ -7,20 +7,20 @@
   align-items: center;
   background-color: #1c1c1c;
 }
-.cadastroInput{
+.cadastroInput {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
-.cadastroInput input{
+.cadastroInput input {
   height: 35px;
   border-radius: 5px;
   border: 1px solid #f1f1f1;
   width: 60vw;
 }
-.cadastrarBotao{
+.cadastrarBotao {
   margin: 1rem;
 }
-.cadastrarBotao:hover{
+.cadastrarBotao:hover {
   cursor: pointer;
 }

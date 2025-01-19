@@ -16,8 +16,8 @@ export default function Post() {
   const { handleSubmit, loading, error, message } = useCriarLinkContext();
 
   useEffect(() => {
-    const usuarioLogado = (window.sessionStorage.getItem("usuario"));
-    const senhaLogado = (window.sessionStorage.getItem("senha"));
+    const usuarioLogado = window.sessionStorage.getItem("usuario");
+    const senhaLogado = window.sessionStorage.getItem("senha");
     const tokenArmazenado = window.sessionStorage.getItem("token");
 
     if (!usuarioLogado || !tokenArmazenado) {
@@ -70,13 +70,12 @@ export default function Post() {
 
         <div className={styles.postInput}>
           <input
-          className={styles.linkcadastrarBotao}
-           type="button"
+            className={styles.linkcadastrarBotao}
+            type="button"
             onClick={onSubmit}
-             disabled={loading}
+            disabled={loading}
             value={loading ? "Carregando..." : "Postar"}
-            />
-          
+          />
         </div>
       </div>
     </>

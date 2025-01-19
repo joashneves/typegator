@@ -5,21 +5,14 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const {
-    form,
-    handleChange,
-    handleLogin,
-    loading,
-    error,
-    message,
-  } = useCadastrarUsuarioContext();
+  const { form, handleChange, handleLogin, loading, error, message } =
+    useCadastrarUsuarioContext();
 
-  
-    useEffect(() =>{
-      const user = window.sessionStorage.getItem('usuario');
-      const password = window.sessionStorage.getItem('senha');
-      console.log(user, password);
-    },[])
+  useEffect(() => {
+    const user = window.sessionStorage.getItem("usuario");
+    const password = window.sessionStorage.getItem("senha");
+    console.log(user, password);
+  }, []);
 
   return (
     <>
@@ -45,7 +38,8 @@ export default function Login() {
           />
         </div>
         <div className={styles.loginInput}>
-          <input className={styles.loginBotao}
+          <input
+            className={styles.loginBotao}
             type="button"
             value={loading ? "Carregando..." : "Login"}
             onClick={handleLogin}
@@ -55,13 +49,12 @@ export default function Login() {
         {error && <div className={styles.error}>{error}</div>}
         {message && <div className={styles.message}>{message}</div>}
 
-        <Link to='/cadastro'>
-        <div className={styles.linkCadastro}>
-          <p>Se não tiver uma conta clique aqui.</p>
-        </div>
-            </Link>
+        <Link to="/cadastro">
+          <div className={styles.linkCadastro}>
+            <p>Se não tiver uma conta clique aqui.</p>
+          </div>
+        </Link>
       </div>
-      
     </>
   );
 }

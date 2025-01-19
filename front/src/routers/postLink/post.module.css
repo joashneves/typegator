@@ -1,4 +1,4 @@
-.postFormulario{
+.postFormulario {
   padding: 1rem;
   margin: 1rem;
 
@@ -7,20 +7,20 @@
   align-items: center;
   background-color: #1c1c1c;
 }
-.postInput{
+.postInput {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
-.postInput input{
+.postInput input {
   height: 35px;
   border-radius: 5px;
   border: 1px solid #f1f1f1;
   width: 60vw;
 }
-.linkcadastrarBotao{
+.linkcadastrarBotao {
   margin: 1rem;
 }
-.linkcadastrarBotao:hover{
+.linkcadastrarBotao:hover {
   cursor: pointer;
 }

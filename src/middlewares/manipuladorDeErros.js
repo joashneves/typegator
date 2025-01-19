@@ -1,7 +1,7 @@
-const { BaseError, ValidationError, DatabaseError } = require('sequelize');
-const ErroBase = require('../erros/ErroBase.js');
-const RequisicaoIncorreta = require('../erros/RequisicaoIncorreta.js');
-const ErroValidacao = require('../erros/ErroValidacao.js');
+const { BaseError, ValidationError, DatabaseError } = require("sequelize");
+const ErroBase = require("../erros/ErroBase.js");
+const RequisicaoIncorreta = require("../erros/RequisicaoIncorreta.js");
+const ErroValidacao = require("../erros/ErroValidacao.js");
 
 function manipuladorDeErros(erro, req, res, next) {
   if (erro instanceof DatabaseError) {

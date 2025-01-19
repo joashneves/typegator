@@ -19,4 +19,4 @@ Coloquei para que cada deploy na main, faça ele puxar, sem a necessidade de eu 
 
 # Colocando no ar
 
-Coloquei no ar o site esta [aqui](https://typergator.squareweb.app/) e tambem coloquei as rotas ligada pra API como /api/*
+Coloquei no ar o site esta [aqui](https://typergator.squareweb.app/) e tambem coloquei as rotas ligada pra API como /api/\*

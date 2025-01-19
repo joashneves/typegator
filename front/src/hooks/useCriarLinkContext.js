@@ -6,8 +6,15 @@ export const useCriarLinkContext = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
-  const navigator = useNavigate()
-  const handleSubmit = async ({ titulo, link, descricao, usuario, senha, token }) => {
+  const navigator = useNavigate();
+  const handleSubmit = async ({
+    titulo,
+    link,
+    descricao,
+    usuario,
+    senha,
+    token,
+  }) => {
     if (!titulo || !link || !descricao) {
       setError("Todos os campos devem ser preenchidos!");
       return;
@@ -24,7 +31,7 @@ export const useCriarLinkContext = () => {
         descricao,
         link,
       };
-      console.log(dados, token)
+      console.log(dados, token);
       const response = await axios.post("/api/link", dados, {
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +41,7 @@ export const useCriarLinkContext = () => {
       });
 
       setMessage("Postagem criada com sucesso!");
-      navigator('/')
+      navigator("/");
       return response.data;
     } catch (error) {
       console.error("Erro ao criar postagem:", error);

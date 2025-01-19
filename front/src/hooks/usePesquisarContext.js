@@ -11,7 +11,7 @@ export const usePesquisarContext = (pesquisa = "") => {
         // Se não houver pesquisa, usa o endpoint padrão "/link/"
         const endpoint = pesquisa ? `/api/link/${pesquisa}` : `/api/link`;
         const response = await axios.get(endpoint);
-        console.log(endpoint)
+        console.log(endpoint);
         if (Array.isArray(response.data)) {
           console.log(response.data);
           setLinks(response.data);

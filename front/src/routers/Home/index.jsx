@@ -3,11 +3,11 @@ import { usePesquisarContext } from "../../hooks/usePesquisarContext";
 import Header from "../../components/header";
 import LinkPost from "../../components/LinkPost";
 import Pesquisa from "../../components/pesquisa";
-import styles from './Home.module.css';
+import styles from "./Home.module.css";
 
 export default function Home() {
   const { links } = usePesquisarContext();
-  console.log(links)
+  console.log(links);
   return (
     <>
       <Header />
@@ -18,14 +18,17 @@ export default function Home() {
         {links.length === 0 ? (
           <p>Carregando links...</p>
         ) : (
-          links.slice().reverse().map((link, index) => (
-            <LinkPost
-              key={index}
-              titulo={link.titulo}
-              descricao={link.descricao}
-              link={link.link}
-            />
-          ))
+          links
+            .slice()
+            .reverse()
+            .map((link, index) => (
+              <LinkPost
+                key={index}
+                titulo={link.titulo}
+                descricao={link.descricao}
+                link={link.link}
+              />
+            ))
         )}
       </div>
     </>

@@ -1,4 +1,4 @@
-.loginFormulario{
+.loginFormulario {
   padding: 1rem;
   margin: 1rem;
 
@@ -7,20 +7,20 @@
   align-items: center;
   background-color: #1c1c1c;
 }
-.loginInput{
+.loginInput {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
-.loginInput input{
+.loginInput input {
   height: 35px;
   border-radius: 5px;
   border: 1px solid #f1f1f1;
   width: 60vw;
 }
-.loginBotao{
+.loginBotao {
   margin: 1rem;
 }
-.loginBotao:hover{
+.loginBotao:hover {
   cursor: pointer;
 }

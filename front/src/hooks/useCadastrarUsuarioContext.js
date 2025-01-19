@@ -10,12 +10,12 @@ export const useCadastrarUsuarioContext = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
-  
+
   // Função para login
   const handleLogin = async () => {
     const { usuario, senha } = form;
@@ -28,7 +28,7 @@ export const useCadastrarUsuarioContext = () => {
 
     setLoading(true);
     setError(null); // Limpa o erro, se houver
-    
+
     try {
       const dadosLogin = {
         usuario_usuario: usuario,
@@ -36,10 +36,10 @@ export const useCadastrarUsuarioContext = () => {
       };
 
       // Enviando dados de login
-      const response = await fetch('/api/login', {
-        method: 'PUT',
+      const response = await fetch("/api/login", {
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(dadosLogin),
       });
@@ -53,14 +53,14 @@ export const useCadastrarUsuarioContext = () => {
       // Verifica se o login foi bem-sucedido
       if (responseData.token) {
         console.log("settar");
-        
+
         // Salva as informações do usuário e o token no sessionStorage
-        window.sessionStorage.setItem('usuario', usuario);
-        window.sessionStorage.setItem('senha', senha);
-        window.sessionStorage.setItem('token', responseData.token);
+        window.sessionStorage.setItem("usuario", usuario);
+        window.sessionStorage.setItem("senha", senha);
+        window.sessionStorage.setItem("token", responseData.token);
 
         // Redireciona para a página desejada
-        navigate('/post');
+        navigate("/post");
         setMessage("Login realizado com sucesso!");
       } else {
         setError("Credenciais inválidas!");
