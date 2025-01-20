@@ -14,7 +14,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "concurrently \"cd front && npm run dev\" \"nodemon server.js\"",
+    "dev": "concurrently \"cd front && npm run build\" \"nodemon server.js\"",
     "test": " concurrently \"nodemon server.js\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand --verbose",
     "migrations:up": "npx sequelize-cli db:migrate",

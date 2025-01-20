@@ -10,7 +10,6 @@ export default function Home() {
   console.log(links);
   return (
     <>
-      <Header />
       <br />
       <Pesquisa />
       <br />
@@ -21,9 +20,12 @@ export default function Home() {
           links.map((link, index) => (
             <LinkPost
               key={index}
+              id={link.id}
               titulo={link.titulo}
               descricao={link.descricao}
               link={link.link}
+              usuario_id={link.usuario_id}
+              total_voto={link.total_voto}
             />
           ))
         )}

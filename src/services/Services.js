@@ -10,7 +10,11 @@ class Services {
       order: [["createdAt", "DESC"]],
     });
   }
-
+  async pegaRegistroPorId(id) {
+    return dataSource[this.model].findOne({
+      where: { id: id },
+    });
+  }
   async criaRegistro(dadosDoRegistro) {
     return dataSource[this.model].create(dadosDoRegistro);
   }

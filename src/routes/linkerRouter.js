@@ -21,11 +21,14 @@ router.get("/api/link/:titulo", cors(), (req, res) =>
 router.post("/api/link", cors(), autenticadoToken, (req, res) =>
   linkerController.criarPostagemLink(req, res),
 );
+router.put("/api/link/voteup/:id", cors(), autenticadoToken, (req, res) =>
+  linkerController.votoPositivo(req, res),
+);
+router.put("/api/link/votedown/:id", cors(), autenticadoToken, (req, res) =>
+  linkerController.votoNegativo(req, res),
+);
 router.put("/api/link/:id", cors(), autenticadoToken, (req, res) =>
   linkerController.atualiza(req, res),
-);
-router.put("/api/link/vote_up:id", cors(), autenticadoToken, (req, res) =>
-  linkerController.exclui(req, res),
 );
 
 module.exports = router;

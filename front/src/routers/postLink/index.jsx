@@ -35,7 +35,6 @@ export default function Post() {
 
   return (
     <>
-      <Header />
       <div className={styles.postFormulario}>
         <h1>Postar Link</h1>
         {error && <p className={styles.error}>{error}</p>}

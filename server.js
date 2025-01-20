@@ -5,32 +5,9 @@ const manipuladorDeErros = require("./src/middlewares/manipuladorDeErros.js");
 const express = require("express");
 const { auth } = require("express-openid-connect");
 const path = require("path");
-const { exec } = require("child_process");
-const fs = require("fs");
 
 // Verifica se a pasta 'front/dist' existe antes de rodar o build
 const buildDir = path.join(__dirname, "front", "dist");
-
-if (!fs.existsSync(buildDir)) {
-  console.log("Pasta build não encontrada. Iniciando o build...");
-  exec(
-    "npm install -g vite && cd front && npm install && npm run build",
-    (error, stdout, stderr) => {
-      console.log("Executando");
-      if (error) {
-        console.error(`Erro ao realizar o build: ${error.message}`);
-        return;
-      }
-      if (stderr) {
-        console.error(`Erro no build: ${stderr}`);
-        return;
-      }
-      console.log(`Build realizado com sucesso: ${stdout}`);
-    },
-  );
-} else {
-  console.log("Pasta build já existe. Servindo os arquivos estáticos.");
-}
 
 // Configuração do JWT
 const config = {
