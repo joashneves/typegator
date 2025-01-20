@@ -92,9 +92,33 @@ class LinkerController extends Controller {
       // Caso não exista, cria o novo voto
       const votoUp = await servicesVotoUp.create(votoPositivo);
 
-      return res
-        .status(201)
-        .json({ mensagem: "Voto registrado com sucesso.", voto: votoUp });
+      // Atualiza o registro do linker
+    const linker = await servicesLinker.findByPk(id);
+    if (!linker) {
+      return res.status(404).json({ mensagem: "Link não encontrado." });
+    }
+
+    // Incrementa voto_down e atualiza total_voto
+    const voto_up = linker.voto_up || 0;
+    const voto_down = (linker.voto_down || 0) + 1;
+    const total_voto = voto_up - voto_down;
+
+    await linker.update({
+      voto_up,
+      total_voto,
+    });
+
+    return res
+      .status(201)
+      .json({
+        mensagem: "Voto registrado com sucesso.",
+        voto: votoUp,
+        linker: {
+          voto_up,
+          voto_down,
+          total_voto,
+        },
+      });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ erro: error.message });
@@ -135,9 +159,33 @@ class LinkerController extends Controller {
       // Caso não exista, cria o novo voto
       const votoDown = await servicesVotoDown.create(votoNegativo);
 
-      return res
-        .status(201)
-        .json({ mensagem: "Voto registrado com sucesso.", voto: votoDown });
+      // Atualiza o registro do linker
+    const linker = await servicesLinker.findByPk(id);
+    if (!linker) {
+      return res.status(404).json({ mensagem: "Link não encontrado." });
+    }
+
+    // Incrementa voto_down e atualiza total_voto
+    const voto_up = linker.voto_up || 0;
+    const voto_down = (linker.voto_down || 0) + 1;
+    const total_voto = voto_up - voto_down;
+
+    await linker.update({
+      voto_down,
+      total_voto,
+    });
+
+    return res
+      .status(201)
+      .json({
+        mensagem: "Voto registrado com sucesso.",
+        voto: votoDown,
+        linker: {
+          voto_up,
+          voto_down,
+          total_voto,
+        },
+      });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ erro: error.message });
