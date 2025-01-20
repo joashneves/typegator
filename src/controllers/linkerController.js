@@ -112,7 +112,7 @@ class LinkerController extends Controller {
         voto_down: voto_down,
         total_voto: total_voto,
       };
-      const linkeVotoatualizado = await linkerServices.atualizaRegistro(
+      const linkeVotoatualizado = await linkerServices.atualizaRegistroVotos(
         votosContabilizados,
         id,
       );
@@ -182,7 +182,7 @@ class LinkerController extends Controller {
         voto_down: voto_down,
         total_voto: total_voto,
       };
-      const linkeVotoatualizado = await linkerServices.atualizaRegistro(
+      const linkeVotoatualizado = await linkerServices.atualizaRegistroVotos(
         votosContabilizados,
         id,
       );
