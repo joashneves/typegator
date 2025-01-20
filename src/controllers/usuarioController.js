@@ -8,7 +8,19 @@ class UsuarioController extends Controller {
   constructor() {
     super(usuariosServices);
   }
-
+  async buscarPorId(req, res) {
+    const id = req.params.id;
+    try {
+      const { usuario } = await usuariosServices.pegaRegistroPorId(id);
+      return res.status(200).json({ usuario });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        error: "Ocorreu um erro.",
+        mensagem: error.message,
+      });
+    }
+  }
   async criarUsuario(req, res) {
     const dadosUsuario = req.body;
     try {
@@ -68,7 +80,6 @@ class UsuarioController extends Controller {
       });
     }
   }
-
   async login(req, res) {
     const { usuario_usuario, usuario_senha } = req.body;
 

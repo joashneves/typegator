@@ -4,6 +4,8 @@ import setarParaBaixo from "../../assets/setaparabaixo.svg";
 import setarParaCima from "../../assets/setaparacima.svg";
 import useVotoPositivo from "../../hooks/useVotoPositivo.js";
 import useVotoNegativo from "../../hooks/useVotoNegativo.js";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function LinkPost({
   id,
@@ -13,6 +15,7 @@ export default function LinkPost({
   total_voto,
   usuario_id,
 }) {
+  const [usuarioNome, setUsuarioNome] = useState("");
   console.log({ id, titulo, link, descricao, total_voto, usuario_id });
   const enviarVotoPositivo = () => {
     const usuarioLogado = window.sessionStorage.getItem("usuario");
@@ -35,6 +38,15 @@ export default function LinkPost({
     }
     useVotoNegativo(id, usuarioLogado, senhaLogado, tokenArmazenado);
   };
+
+  useEffect(() => {
+    const userFetch = async () => {
+      const response = await axios.get(`/api/usuario/${id}`);
+      const data = response.data;
+      setUsuarioNome(data.usuario);
+    };
+    userFetch();
+  }, []);
 
   return (
     <div className={styles.componenteLink}>
@@ -61,6 +73,7 @@ export default function LinkPost({
         </Link>
         <p className={styles.linhaDoLink}>{link}</p>
         <div>{descricao}</div>
+        <div className={styles.criador}>Enviado por : {usuarioNome}</div>
       </div>
     </div>
   );

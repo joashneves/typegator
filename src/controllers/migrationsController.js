@@ -13,8 +13,8 @@ class MigrationsController extends Controller {
       const result = await migrationsServices.runMigrations();
       res.status(200).json({
         mensagem: "Migrações executadas com sucesso.",
-        detalhes: result,
       });
+      console.log(result);
     } catch (error) {
       console.error(error.message);
       res

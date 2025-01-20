@@ -1,4 +1,3 @@
-import Header from "../../components/header";
 import styles from "./login.module.css";
 import { useCadastrarUsuarioContext } from "../../hooks/useCadastrarUsuarioContext"; // Importando o hook
 import { useEffect } from "react";

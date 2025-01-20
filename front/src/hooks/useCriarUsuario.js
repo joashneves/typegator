@@ -57,7 +57,7 @@ export const useCadastrarUsuario = () => {
       }
 
       const responseData = await response.json();
-      setMessage(responseData.message); // Mensagem de sucesso
+      setMessage("Cadastro Realizado Com sucesso"); // Mensagem de sucesso
       setForm({
         nome: "",
         usuario: "",

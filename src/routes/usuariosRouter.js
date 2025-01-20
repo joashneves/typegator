@@ -5,6 +5,9 @@ const router = Router();
 const usuarioController = new UsuarioController();
 const cors = require("cors");
 
+router.get("/api/usuario/:id", cors(), (req, res) =>
+  usuarioController.buscarPorId(req, res),
+);
 router.post("/api/usuario", cors(), (req, res) =>
   usuarioController.criarUsuario(req, res),
 );
