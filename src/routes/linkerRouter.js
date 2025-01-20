@@ -9,7 +9,7 @@ const router = Router();
 router.get("/api/link", cors(), (req, res) =>
   linkerController.pegaTodos(req, res),
 );
-router.get("/api/link/usuarios/:usuarios", cors(), (req, res) =>
+router.get("/api/link/usuarios/:usuarios", autenticadoToken, cors(), (req, res) =>
   linkerController.listaPostagemPorUsuario(req, res),
 );
 router.get("/api/link/:titulo", cors(), (req, res) =>

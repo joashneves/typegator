@@ -31,26 +31,6 @@ class UsuariosServices extends Services {
       throw new Error("Erro ao buscar o usuário");
     }
   }
-
-  async criarUsuario(dadosDoRegistro) {
-    const { nome, usuario, email, senha } = dadosDoRegistro;
-    if (!nome || !usuario || !email || !senha) {
-      throw new Error(
-        "Todos os campos ('nome', 'usuario', 'email', 'senha') são obrigatórios.",
-      );
-    }
-    const senhaHash = senha.hashCode();
-    const novosDados = {
-      nome,
-      usuario,
-      email,
-      senha: senhaHash,
-    };
-    console.log(novosDados);
-
-    return dataSource[this.model].create(novosDados);
-  }
-
   async buscarPorDados(usuario_usuario, usuario_senha) {
     if (usuario_usuario === undefined || usuario_senha === undefined) {
       throw new Error("Favor fornecer paramentros");
@@ -91,6 +71,46 @@ class UsuariosServices extends Services {
     console.log(`usuario encontrado : ${filtradoUser.id}`);
     return filtradoUser;
   }
+  async criarUsuario(dadosDoRegistro) {
+    const { nome, usuario, email, senha } = dadosDoRegistro;
+    if (!nome || !usuario || !email || !senha) {
+      throw new Error(
+        "Todos os campos ('nome', 'usuario', 'email', 'senha') são obrigatórios.",
+      );
+    }
+    const senhaHash = senha.hashCode();
+    const novosDados = {
+      nome,
+      usuario,
+      email,
+      senha: senhaHash,
+    };
+    console.log(novosDados);
+
+    return dataSource[this.model].create(novosDados);
+  }
+
+    async atualizaRegistro(dadosAtualizados, id) {
+      const senhaHash = dadosAtualizados.senha.hashCode();
+      const novosDados = {
+        nome: dadosAtualizados.nome,
+        usuario: dadosAtualizados.usuario,
+        email: dadosAtualizados.email,
+        senha: senhaHash,
+      }
+      const listadeRegistroAtualizado = dataSource[this.model].update(
+        novosDados,
+        {
+          where: {
+            id: id,
+          },
+        },
+      );
+      if (listadeRegistroAtualizado[0] === 0) {
+        return false;
+      }
+      return true;
+    }
 }
 
 module.exports = UsuariosServices;

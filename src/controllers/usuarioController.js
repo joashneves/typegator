@@ -39,6 +39,28 @@ class UsuarioController extends Controller {
       });
     }
   }
+  async alterarSenha(req, res){
+    const { usuario_usuario, usuario_senha, usuario_senhaNova } = req.body;
+    try {
+        const usuarioLogado = await usuariosServices.autenticadoUsuario(
+          usuario_usuario,
+          usuario_senha,
+        );
+        const usuarioSenhanova = {
+          nome: usuarioLogado.nome,
+          usuario: usuarioLogado.usuario,
+          email: usuarioLogado.email,
+          senha: usuario_senhaNova
+        }
+        await usuariosServices.atualizaRegistro(usuarioSenhanova, usuarioLogado.id)
+    }catch(error){
+      console.error("Erro ao autenticar usuário:", error.message);
+      return res.status(500).json({
+        error: "Ocorreu um erro ao realizar login.",
+        mensagem: error.message,
+      });
+    }
+  }
 
   async login(req, res) {
     const { usuario_usuario, usuario_senha } = req.body;
@@ -56,7 +78,7 @@ class UsuarioController extends Controller {
       const token = jwt.sign(
         { id: usuarioLogado.id, usuario: usuarioLogado.usuario },
         process.env.SECRET,
-        { expiresIn: "1h" }, // Token expira em 1 hora
+        { expiresIn: "24h" }, // Token expira em 1 hora
       );
 
       return res.status(200).json({ usuarioLogado, token });

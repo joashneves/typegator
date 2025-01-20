@@ -9,7 +9,7 @@ router.post("/api/usuario", cors(), (req, res) =>
   usuarioController.criarUsuario(req, res),
 );
 router.put("/api/usuario", cors(), autenticadoToken, (req, res) =>
-  usuarioController.atualizaUsuario(req, res),
+  usuarioController.alterarSenha(req, res),
 );
 router.put("/api/login", cors(), (req, res) =>
   usuarioController.login(req, res),
