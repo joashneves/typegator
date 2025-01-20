@@ -8,8 +8,8 @@ jobs:
     name: Prettier
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
-      - uses: actions/setup-node
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "node"
       - run: npm ci
@@ -19,10 +19,10 @@ jobs:
     name: Commitlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node
+      - uses: actions/setup-node@v4
         with:
           node-version: "node"
       - run: npm ci

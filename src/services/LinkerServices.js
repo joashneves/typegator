@@ -8,7 +8,20 @@ class LinkerServices extends Services {
   constructor() {
     super("Linker");
   }
-
+  async procurarLinkPorUsuario(usuario) {
+    try {
+      const usuarioData = await usuariosServices.buscarPorNome(usuario);
+      const whereCondition = { usuario_id: usuarioData.id };
+      const linksFiltrados = await dataSource[this.model].findAll({
+        where: whereCondition,
+        order: [["createdAt", "DESC"]], // Ordena pela coluna 'createdAt' em ordem decrescente
+      });
+      return linksFiltrados || [];
+    } catch (error) {
+      console.error("Erro ao procurar link:", error.message);
+      throw error;
+    }
+  }
   async procurarLinkParamentro(filtrotitulo) {
     try {
       const whereCondition = filtrotitulo
@@ -17,6 +30,7 @@ class LinkerServices extends Services {
 
       const linksFiltrados = await dataSource[this.model].findAll({
         where: whereCondition,
+        order: [["createdAt", "DESC"]], // Ordena pela coluna 'createdAt' em ordem decrescente
       });
       return linksFiltrados || [];
     } catch (error) {

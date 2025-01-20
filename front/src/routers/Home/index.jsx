@@ -18,17 +18,14 @@ export default function Home() {
         {links.length === 0 ? (
           <p>Carregando links...</p>
         ) : (
-          links
-            .slice()
-            .reverse()
-            .map((link, index) => (
-              <LinkPost
-                key={index}
-                titulo={link.titulo}
-                descricao={link.descricao}
-                link={link.link}
-              />
-            ))
+          links.map((link, index) => (
+            <LinkPost
+              key={index}
+              titulo={link.titulo}
+              descricao={link.descricao}
+              link={link.link}
+            />
+          ))
         )}
       </div>
     </>
