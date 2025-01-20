@@ -1,6 +1,6 @@
-import Header from "../../components/header";
 import styles from "./cadastro.module.css";
 import { useCadastrarUsuario } from "../../hooks/useCriarUsuario"; // O caminho pode variar
+import { Link } from "react-router-dom";
 
 export default function Cadastro() {
   const { form, handleChange, handleSubmit, loading, error, message } =
@@ -58,7 +58,6 @@ export default function Cadastro() {
         {error && <div className="error">{error}</div>}{" "}
         {/* Exibe erro, se houver */}
         {message && <div className="success">{message}</div>}{" "}
-        {/* Exibe mensagem de sucesso, se houver */}
         <div className={styles.cadastroInput}>
           <input
             className={styles.cadastrarBotao}
@@ -67,6 +66,11 @@ export default function Cadastro() {
             disabled={loading}
             value={loading ? "Cadastrando..." : "Cadastrar"}
           />
+          <Link to="/login">
+            <div className={styles.linkCadastro}>
+              <p>Se ja tiver uma conta clique aqui.</p>
+            </div>
+          </Link>
         </div>
       </div>
     </>

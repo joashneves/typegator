@@ -28,10 +28,15 @@ class LinkerServices extends Services {
         ? { titulo: { [Sequelize.Op.like]: `%${filtrotitulo}%` } }
         : {};
 
+      // Adiciona a ordenação pelo 'total_voto' em ordem decrescente
       const linksFiltrados = await dataSource[this.model].findAll({
         where: whereCondition,
-        order: [["createdAt", "DESC"]], // Ordena pela coluna 'createdAt' em ordem decrescente
+        order: [
+          ["total_voto", "DESC"], // Ordena pela coluna 'total_voto' em ordem decrescente
+          ["createdAt", "DESC"], // Ordena pela coluna 'createdAt' em ordem decrescente
+        ],
       });
+
       return linksFiltrados || [];
     } catch (error) {
       console.error("Erro ao procurar link:", error.message);
