@@ -19,8 +19,6 @@ export default function Home() {
           <p>Carregando links...</p>
         ) : (
           links
-            .slice()
-            .reverse()
             .map((link, index) => (
               <LinkPost
                 key={index}

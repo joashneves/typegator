@@ -45,6 +45,7 @@ export default function Post() {
           <label>Título</label>
           <input
             type="text"
+            maxlength="40"
             value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
           />
@@ -53,7 +54,7 @@ export default function Post() {
         <div className={styles.postInput}>
           <label>Link (URL)</label>
           <input
-            type="text"
+            type="url"
             value={link}
             onChange={(e) => setLink(e.target.value)}
           />

@@ -6,8 +6,11 @@ class Services {
   }
 
   async pegaTodosOsRegistros() {
-    return dataSource[this.model].findAll();
+    return dataSource[this.model].findAll({
+      order: [['createdAt', 'DESC']],
+    });
   }
+  
   async criaRegistro(dadosDoRegistro) {
     return dataSource[this.model].create(dadosDoRegistro);
   }

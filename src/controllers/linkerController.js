@@ -7,6 +7,17 @@ class LinkerController extends Controller {
   constructor() {
     super(linkerServices);
   }
+  async listaPostagemPorUsuario(req, res) {
+    const usuarios = req.params.usuarios;
+    try {
+      const linksFiltrados =
+        await linkerServices.procurarLinkPorUsuario(usuarios);
+      return res.status(200).json(linksFiltrados);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ erro: error.message });
+    }
+  }
   async listaPostagemPorParam(req, res) {
     const titulo = req.params.titulo;
     try {
