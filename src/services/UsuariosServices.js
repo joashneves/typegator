@@ -90,27 +90,27 @@ class UsuariosServices extends Services {
     return dataSource[this.model].create(novosDados);
   }
 
-    async atualizaRegistro(dadosAtualizados, id) {
-      const senhaHash = dadosAtualizados.senha.hashCode();
-      const novosDados = {
-        nome: dadosAtualizados.nome,
-        usuario: dadosAtualizados.usuario,
-        email: dadosAtualizados.email,
-        senha: senhaHash,
-      }
-      const listadeRegistroAtualizado = dataSource[this.model].update(
-        novosDados,
-        {
-          where: {
-            id: id,
-          },
+  async atualizaRegistro(dadosAtualizados, id) {
+    const senhaHash = dadosAtualizados.senha.hashCode();
+    const novosDados = {
+      nome: dadosAtualizados.nome,
+      usuario: dadosAtualizados.usuario,
+      email: dadosAtualizados.email,
+      senha: senhaHash,
+    };
+    const listadeRegistroAtualizado = dataSource[this.model].update(
+      novosDados,
+      {
+        where: {
+          id: id,
         },
-      );
-      if (listadeRegistroAtualizado[0] === 0) {
-        return false;
-      }
-      return true;
+      },
+    );
+    if (listadeRegistroAtualizado[0] === 0) {
+      return false;
     }
+    return true;
+  }
 }
 
 module.exports = UsuariosServices;

@@ -39,21 +39,24 @@ class UsuarioController extends Controller {
       });
     }
   }
-  async alterarSenha(req, res){
+  async alterarSenha(req, res) {
     const { usuario_usuario, usuario_senha, usuario_senhaNova } = req.body;
     try {
-        const usuarioLogado = await usuariosServices.autenticadoUsuario(
-          usuario_usuario,
-          usuario_senha,
-        );
-        const usuarioSenhanova = {
-          nome: usuarioLogado.nome,
-          usuario: usuarioLogado.usuario,
-          email: usuarioLogado.email,
-          senha: usuario_senhaNova
-        }
-        await usuariosServices.atualizaRegistro(usuarioSenhanova, usuarioLogado.id)
-    }catch(error){
+      const usuarioLogado = await usuariosServices.autenticadoUsuario(
+        usuario_usuario,
+        usuario_senha,
+      );
+      const usuarioSenhanova = {
+        nome: usuarioLogado.nome,
+        usuario: usuarioLogado.usuario,
+        email: usuarioLogado.email,
+        senha: usuario_senhaNova,
+      };
+      await usuariosServices.atualizaRegistro(
+        usuarioSenhanova,
+        usuarioLogado.id,
+      );
+    } catch (error) {
       console.error("Erro ao autenticar usuário:", error.message);
       return res.status(500).json({
         error: "Ocorreu um erro ao realizar login.",

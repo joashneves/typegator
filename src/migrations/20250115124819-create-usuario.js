@@ -18,9 +18,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
-      descricao:{
+      descricao: {
         type: Sequelize.STRING,
-        defaultValue: 'Descrição',
+        defaultValue: "Descrição",
       },
       senha: {
         type: Sequelize.STRING,
