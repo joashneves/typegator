@@ -8,7 +8,6 @@ export default function Cadastro() {
 
   return (
     <>
-      <Header />
       <div className={styles.cadastroFormulario}>
         <h1>Cadastro</h1>
         <div className={styles.cadastroInput}>

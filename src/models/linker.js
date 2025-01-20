@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
           isUrl: true,
         },
       },
+      voto_up: DataTypes.INTEGER,
+      voto_down: DataTypes.INTEGER,
+      total_voto: DataTypes.INTEGER,
     },
     {
       sequelize,

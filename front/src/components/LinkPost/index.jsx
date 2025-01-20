@@ -1,18 +1,67 @@
 import { Link } from "react-router-dom";
 import styles from "./LinkPost.module.css";
+import setarParaBaixo from "../../assets/setaparabaixo.svg";
+import setarParaCima from "../../assets/setaparacima.svg";
+import useVotoPositivo from "../../hooks/useVotoPositivo.js";
+import useVotoNegativo from "../../hooks/useVotoNegativo.js";
 
-export default function LinkPost({ titulo, link, descricao }) {
+export default function LinkPost({
+  id,
+  titulo,
+  link,
+  descricao,
+  total_voto,
+  usuario_id,
+}) {
+  console.log({ id, titulo, link, descricao, total_voto, usuario_id });
+  const enviarVotoPositivo = () => {
+    const usuarioLogado = window.sessionStorage.getItem("usuario");
+    const senhaLogado = window.sessionStorage.getItem("senha");
+    const tokenArmazenado = window.sessionStorage.getItem("token");
+
+    if (!usuarioLogado || !senhaLogado || !tokenArmazenado) {
+      return alert("Você precisa estar autenticado para votar.");
+    }
+    useVotoPositivo(id, usuarioLogado, senhaLogado, tokenArmazenado);
+  };
+
+  const enviarVotoNegativo = () => {
+    const usuarioLogado = window.sessionStorage.getItem("usuario");
+    const senhaLogado = window.sessionStorage.getItem("senha");
+    const tokenArmazenado = window.sessionStorage.getItem("token");
+
+    if (!usuarioLogado || !senhaLogado || !tokenArmazenado) {
+      return alert("Você precisa estar autenticado para votar.");
+    }
+    useVotoNegativo(id, usuarioLogado, senhaLogado, tokenArmazenado);
+  };
+
   return (
-    <>
-      <Link to={link}>
-        <div className={styles.componenteLink}>
-          <div className={styles.componenteDescricao}>
-            <h1 className={styles.linhaTitulo}>{titulo}</h1>
-            <p className={styles.linhaDoLink}>{link}</p>
-            <div>{descricao}</div>
-          </div>
+    <div className={styles.componenteLink}>
+      <div>
+        <img
+          className={styles.setasVotos}
+          onClick={enviarVotoPositivo}
+          alt="seta para cima"
+          src={setarParaCima}
+        />
+        <div>
+          <p>{total_voto ?? 0}</p>
         </div>
-      </Link>
-    </>
+        <img
+          className={styles.setasVotos}
+          onClick={enviarVotoNegativo}
+          alt="seta para baixo"
+          src={setarParaBaixo}
+        />
+      </div>
+      <div className={styles.componenteDescricao}>
+        <Link to={link}>
+          <h1 className={styles.linhaTitulo}>{titulo}</h1>
+        </Link>
+        <p className={styles.linhaDoLink}>{link}</p>
+        <div>{descricao}</div>
+      </div>
+    </div>
   );
 }

@@ -16,7 +16,6 @@ export default function Login() {
 
   return (
     <>
-      <Header />
       <div className={styles.loginFormulario}>
         <h1>Login</h1>
         <div className={styles.loginInput}>

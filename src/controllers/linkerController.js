@@ -76,12 +76,10 @@ class LinkerController extends Controller {
       };
 
       // Verifica se o voto já existe
-      const votoExistente = await servicesVotoUp.findOne({
-        where: {
-          usuario_id: votoPositivo.usuario_id,
-          linker_id: votoPositivo.linker_id,
-        },
-      });
+      const votoExistente = await servicesVotoUp.procuraVotoExiste(
+        votoPositivo.usuario_id,
+        votoPositivo.linker_id,
+      );
 
       if (votoExistente) {
         return res
@@ -90,34 +88,39 @@ class LinkerController extends Controller {
       }
 
       // Caso não exista, cria o novo voto
-      const votoUp = await servicesVotoUp.create(votoPositivo);
+      const votoUp = await servicesVotoUp.criaRegistro(votoPositivo);
 
       // Atualiza o registro do linker
-    const linker = await servicesLinker.findByPk(id);
-    if (!linker) {
-      return res.status(404).json({ mensagem: "Link não encontrado." });
-    }
+      const linker = await linkerServices.pegaRegistroPorId(id);
+      if (!linker) {
+        return res.status(404).json({ mensagem: "Link não encontrado." });
+      }
 
-    // Incrementa voto_down e atualiza total_voto
-    const voto_up = linker.voto_up || 0;
-    const voto_down = (linker.voto_down || 0) + 1;
-    const total_voto = voto_up - voto_down;
+      // Incrementa voto_down e atualiza total_voto
+      const voto_up = (linker.voto_up || 0) + 1;
+      const voto_down = linker.voto_down || 0;
+      const total_voto = voto_up - voto_down;
 
-    await linker.update({
-      voto_up,
-      total_voto,
-    });
+      const votosContabilizados = {
+        usuario_usuario: usuario_usuario,
+        usuario_senha: usuario_senha,
+        usuario_id: linker.usuario_id,
+        titulo: linker.titulo,
+        descricao: linker.descricao,
+        link: linker.link,
+        voto_up: voto_up,
+        voto_down: voto_down,
+        total_voto: total_voto,
+      };
+      const linkeVotoatualizado = await linkerServices.atualizaRegistro(
+        votosContabilizados,
+        id,
+      );
 
-    return res
-      .status(201)
-      .json({
+      return res.status(201).json({
         mensagem: "Voto registrado com sucesso.",
         voto: votoUp,
-        linker: {
-          voto_up,
-          voto_down,
-          total_voto,
-        },
+        linkeVotoatualizado,
       });
     } catch (error) {
       console.error(error);
@@ -143,12 +146,10 @@ class LinkerController extends Controller {
       };
 
       // Verifica se o voto já existe
-      const votoExistente = await servicesVotoDown.findOne({
-        where: {
-          usuario_id: votoNegativo.usuario_id,
-          linker_id: votoNegativo.linker_id,
-        },
-      });
+      const votoExistente = await servicesVotoDown.procuraVotoExiste(
+        votoNegativo.usuario_id,
+        votoNegativo.linker_id,
+      );
 
       if (votoExistente) {
         return res
@@ -157,34 +158,39 @@ class LinkerController extends Controller {
       }
 
       // Caso não exista, cria o novo voto
-      const votoDown = await servicesVotoDown.create(votoNegativo);
+      const votoDown = await servicesVotoDown.criaRegistro(votoNegativo);
 
       // Atualiza o registro do linker
-    const linker = await servicesLinker.findByPk(id);
-    if (!linker) {
-      return res.status(404).json({ mensagem: "Link não encontrado." });
-    }
+      const linker = await linkerServices.pegaRegistroPorId(id);
+      if (!linker) {
+        return res.status(404).json({ mensagem: "Link não encontrado." });
+      }
 
-    // Incrementa voto_down e atualiza total_voto
-    const voto_up = linker.voto_up || 0;
-    const voto_down = (linker.voto_down || 0) + 1;
-    const total_voto = voto_up - voto_down;
+      // Incrementa voto_down e atualiza total_voto
+      const voto_up = linker.voto_up || 0;
+      const voto_down = (linker.voto_down || 0) + 1;
+      const total_voto = voto_up - voto_down;
 
-    await linker.update({
-      voto_down,
-      total_voto,
-    });
+      const votosContabilizados = {
+        usuario_usuario: usuario_usuario,
+        usuario_senha: usuario_senha,
+        usuario_id: linker.usuario_id,
+        titulo: linker.titulo,
+        descricao: linker.descricao,
+        link: linker.link,
+        voto_up: voto_up,
+        voto_down: voto_down,
+        total_voto: total_voto,
+      };
+      const linkeVotoatualizado = await linkerServices.atualizaRegistro(
+        votosContabilizados,
+        id,
+      );
 
-    return res
-      .status(201)
-      .json({
+      return res.status(201).json({
         mensagem: "Voto registrado com sucesso.",
         voto: votoDown,
-        linker: {
-          voto_up,
-          voto_down,
-          total_voto,
-        },
+        linkeVotoatualizado,
       });
     } catch (error) {
       console.error(error);

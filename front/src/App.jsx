@@ -5,11 +5,13 @@ import Cadastro from "./routers/cadastro";
 import Login from "./routers/login";
 import Post from "./routers/postLink";
 import { PesquisaProvider } from "./context/PesquisaConxtext.jsx";
+import Header from "./components/header/index.jsx";
 
 export default function App() {
   return (
     <BrowserRouter>
       <PesquisaProvider>
+        <Header />
         <Routes>
           <Route Component={Home} path="/" />
           <Route Component={Cadastro} path="/cadastro" />
