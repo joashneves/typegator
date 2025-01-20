@@ -35,7 +35,7 @@ class UsuarioController extends Controller {
       console.error(error);
       return res.status(500).json({
         error: "Ocorreu um erro.",
-        mensagem: error.type,
+        mensagem: error.message,
       });
     }
   }
@@ -52,10 +52,14 @@ class UsuarioController extends Controller {
         email: usuarioLogado.email,
         senha: usuario_senhaNova,
       };
-      await usuariosServices.atualizaRegistro(
+      const usuarioTrocado = await usuariosServices.atualizaRegistro(
         usuarioSenhanova,
         usuarioLogado.id,
       );
+      return res.status(201).json({
+        mensagem: "Usuário atualizado com sucesso.",
+        usuarioTrocado,
+      });
     } catch (error) {
       console.error("Erro ao autenticar usuário:", error.message);
       return res.status(500).json({
