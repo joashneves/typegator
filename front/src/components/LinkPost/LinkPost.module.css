@@ -36,10 +36,37 @@
 .criador {
   font-size: 8px;
 }
-/* LinkPost.module.css */
+.setasVotos {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
 
-.componenteLink {
-  /* estilos comuns */
+.setasVotos.animate {
+  transform: scale(2.2);
+}
+
+.mouseEffect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 0, 150, 0.5);
+  pointer-events: none;
+  animation: rippleEffect 0.5s ease-out;
+  z-index: 1000;
+}
+
+@keyframes rippleEffect {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(5);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 768px) {

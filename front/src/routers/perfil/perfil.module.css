@@ -1,0 +1,7 @@
+
+.botao {
+  margin: 1rem;
+}
+.botao:hover {
+  cursor: pointer;
+}

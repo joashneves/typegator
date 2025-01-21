@@ -15,11 +15,26 @@ export default function LinkPost({
   total_voto,
   usuario_id,
 }) {
-  
   const [usuarioNome, setUsuarioNome] = useState("");
   const [maxLength, setMaxLength] = useState(127);
-  console.log({ id, titulo, link, descricao, total_voto, usuario_id });
-  const enviarVotoPositivo = () => {
+  const [isAnimatingUp, setIsAnimatingUp] = useState(false);
+  const [isAnimatingDown, setIsAnimatingDown] = useState(false);
+
+  const criarEfeitoMouse = (e) => {
+    const efeito = document.createElement("span");
+    efeito.className = styles.mouseEffect;
+    efeito.style.left = `${e.pageX}px`;
+    efeito.style.top = `${e.pageY}px`;
+    document.body.appendChild(efeito);
+
+    setTimeout(() => {
+      efeito.remove();
+    }, 500); // Remove o efeito após 500ms
+  };
+
+  const enviarVotoPositivo = (e) => {
+    criarEfeitoMouse(e);
+
     const usuarioLogado = window.sessionStorage.getItem("usuario");
     const senhaLogado = window.sessionStorage.getItem("senha");
     const tokenArmazenado = window.sessionStorage.getItem("token");
@@ -27,10 +42,16 @@ export default function LinkPost({
     if (!usuarioLogado || !senhaLogado || !tokenArmazenado) {
       return alert("Você precisa estar autenticado para votar.");
     }
+
+    setIsAnimatingUp(true);
+    setTimeout(() => setIsAnimatingUp(false), 300);
+
     useVotoPositivo(id, usuarioLogado, senhaLogado, tokenArmazenado);
   };
 
-  const enviarVotoNegativo = () => {
+  const enviarVotoNegativo = (e) => {
+    criarEfeitoMouse(e);
+
     const usuarioLogado = window.sessionStorage.getItem("usuario");
     const senhaLogado = window.sessionStorage.getItem("senha");
     const tokenArmazenado = window.sessionStorage.getItem("token");
@@ -38,19 +59,21 @@ export default function LinkPost({
     if (!usuarioLogado || !senhaLogado || !tokenArmazenado) {
       return alert("Você precisa estar autenticado para votar.");
     }
+
+    setIsAnimatingDown(true);
+    setTimeout(() => setIsAnimatingDown(false), 300);
+
     useVotoNegativo(id, usuarioLogado, senhaLogado, tokenArmazenado);
   };
+
   useEffect(() => {
-    // Função para atualizar o comprimento máximo baseado na largura da tela
     const updateMaxLength = () => {
       setMaxLength(window.innerWidth <= 768 ? 40 : 127);
     };
 
-    // Configura o listener para mudanças de tamanho da tela
-    updateMaxLength(); // Chamar inicialmente
+    updateMaxLength();
     window.addEventListener("resize", updateMaxLength);
 
-    // Remover o listener quando o componente for desmontado
     return () => window.removeEventListener("resize", updateMaxLength);
   }, []);
 
@@ -67,7 +90,7 @@ export default function LinkPost({
     <div className={styles.componenteLink}>
       <div>
         <img
-          className={styles.setasVotos}
+          className={`${styles.setasVotos} ${isAnimatingUp ? styles.animate : ""}`}
           onClick={enviarVotoPositivo}
           alt="seta para cima"
           src={setarParaCima}
@@ -76,7 +99,9 @@ export default function LinkPost({
           <p>{total_voto ?? 0}</p>
         </div>
         <img
-          className={styles.setasVotos}
+          className={`${styles.setasVotos} ${
+            isAnimatingDown ? styles.animate : ""
+          }`}
           onClick={enviarVotoNegativo}
           alt="seta para baixo"
           src={setarParaBaixo}
@@ -87,13 +112,13 @@ export default function LinkPost({
           <h1 className={styles.linhaTitulo}>{titulo}</h1>
         </Link>
         <p className={styles.linhaDoLink}>
-        {link.length > maxLength ? `${link.slice(0, maxLength)}...` : link}
+          {link.length > maxLength ? `${link.slice(0, maxLength)}...` : link}
         </p>
         <div className={styles.linhaDaDescricao}>
-           {descricao.length > maxLength
+          {descricao.length > maxLength
             ? `${descricao.slice(0, maxLength)}...`
             : descricao}
-          </div>
+        </div>
         <div className={styles.criador}>Enviado por: {usuarioNome}</div>
       </div>
     </div>

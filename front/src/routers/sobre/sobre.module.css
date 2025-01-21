@@ -1,0 +1,16 @@
+.sobre_container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.sobre_container ul {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.sobre_container ul li {
+  margin-bottom: 5px;
+}

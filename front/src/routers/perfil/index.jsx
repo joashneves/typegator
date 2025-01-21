@@ -2,12 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import LinkPost from "../../components/LinkPost";
+import AlterarSenha from "../../components/alterarSenha";
+import styles from './perfil.module.css';
 
 export default function Perfil() {
   const { usuario } = useParams(); // Captura o parâmetro "usuario" da URL
   const [links, setLinks] = useState([]); // Inicialize corretamente o useState
   const [perfil, setPerfil] = useState(false);
   const [carregando, setCarregando] = useState(true); // Adiciona estado para carregamento
+  const [exibirAlterarSenha, setExibirAlterarSenha] = useState(false); // Estado para exibir o componente
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,17 +52,31 @@ export default function Perfil() {
     navigate("/");
   };
 
+  const toggleAlterarSenha = () => {
+    setExibirAlterarSenha((prevState) => !prevState);
+  };
+
   return (
     <div>
       <h1>Perfil de {usuario}</h1>
-      <p>Informações do perfil de {usuario}...</p>
+      <p>Informações do perfil de {usuario}</p>
 
       {perfil && (
-        <input 
-          type="button" 
-          value="Deslogar" 
-          onClick={handleDeslogar} 
-        />
+        <>
+          <input 
+            className={styles.botao}
+            type="button" 
+            value="Deslogar" 
+            onClick={handleDeslogar} 
+          />
+          <input 
+            className={styles.botao}
+            type="button" 
+            value={exibirAlterarSenha ? "Fechar Alterar Senha" : "Alterar Senha"} 
+            onClick={toggleAlterarSenha} 
+          />
+          {exibirAlterarSenha && <AlterarSenha />}
+        </>
       )}
 
       {carregando ? (
