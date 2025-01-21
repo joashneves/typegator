@@ -64,6 +64,7 @@ export default function Post() {
           <input
             type="text"
             value={descricao}
+            maxlength="127"
             onChange={(e) => setDescricao(e.target.value)}
           />
         </div>

@@ -68,12 +68,14 @@ export default function LinkPost({
         />
       </div>
       <div className={styles.componenteDescricao}>
-        <Link to={link}>
+        <Link to={link} target="_blank" rel="noopener noreferrer">
           <h1 className={styles.linhaTitulo}>{titulo}</h1>
         </Link>
-        <p className={styles.linhaDoLink}>{link}</p>
-        <div>{descricao}</div>
-        <div className={styles.criador}>Enviado por : {usuarioNome}</div>
+        <p className={styles.linhaDoLink}>
+          {link.length > 127 ? `${link.slice(0, 127)}...` : link}
+        </p>
+        <div>{descricao.length > 128 ? `${descricao.slice(0, 128)}`: descricao}</div>
+        <div className={styles.criador}>Enviado por: {usuarioNome}</div>
       </div>
     </div>
   );

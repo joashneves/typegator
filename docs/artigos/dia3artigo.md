@@ -1,0 +1,26 @@
+# É sempre culpa do CORS [ Dia 3 ]
+# Sim é sempre culpa do CORS
+ Nunca quando eu comecei a trabalhar eu pensei que iria mexer com site depois que comecei a mexer com HTML, olhei pro html e falei "nossa que chato é só isso", ate me deparar com `React` sim, o famoso REACT, ai, eu tomei certo gosto pela coisa, parecia que eu tava programando de verdade, estava sentindo que eu estava evoluindo, aprendi a criar rotas, sistemas e tudo mais, amei mexer com javascript, e pow, abriu um mundo de possibilidade, estava amando programação, uma paixão e foi isso... Ate o back end
+Pow, front end é legal, mas nada que eu aprendia na faculdade eu fazia, se parecia, mas não era exatamente uma orientação a objeto, mas todo front, precisa de um back, ~assim como avião precisa de asa, fogueira sem brasa... cof cof~ **foco**, então ta, meu chefe havia me pedido(trabalhava de suporte tecnico, manutenção de computador e fazer cabo de rede) pedido para criar um sistema, eu pensei "pow topo" ate por que eu estava enamorando o front end e queria um desafio `real`, ate toma um back.
+ E o back end? o que eu iria fazer, bem, ja no começo pensei "vou fazer uma [Api](https://github.com/joashneves/TransparenciaDeObrasAPI) em `C#` para caso eles queiram não refazer o [front end](https://github.com/joashneves/ObrasTransparencia)" e sim eu fiz em repositorios separado, ja que pra mim parecia insanidade os dois serem um só, ja que uma era C# e o outro Javascript.
+ ## Ta mas qual finalidade dessa historia?
+ Bem, pegado o `useContext`, queria expressar meu mais profundo ODIO pelo CORS e relatar o quão DESESPERADOR foi fazer essa ~COISA HORRIVEL~ funcionar.
+ Serio eu iria fazer um post hoje mo bonitinho sobre não ter vergonha de seu codigo, mas eu fiquei fuck 7 horas tentando arrumar um problema de CORS esse dia, e não resolvi ele eu acho.
+ **Continuando...**
+ ### O tal do CORS
+ Ta, mas que carambas é o CORS? ~~então, eu não sei, brincadeira sei sim, ou acho que sei, me corrigam se eu estiver errado~~, tenho a plena certeza que ele é uma especie de medida de segurança que barra outras requisiçoes a sua, tendo como voce bloquear ou liberar o acesso caso queira, ate que util não? ~~não,~~ porque é burlavel, mas ta é util sim ja que previne qualquer um acessar sua API, mas ai voce tem o token, então EU não vejo tanta utilidade assim dele, e outra, o token vem DESATIVADO, fazendo que quando voce ta fazendo seu primeiro app fullstack não veja uma tela jorrando vermelho de erro sem saber o que que ta acontecendo e o que voce fez de errado!
+ Sim isso me aconteceu quando eu estava fazendo meu primeiro projeto, eu vi o erro de CORS, e não fazia ideia o que era, havia ate colocado token na coisinha, e usando o sweeger eu só vi a necessidade de colocar minha API no front end de inicio.
+ #### E agora?
+ Bem sabendo desse MECANISMO AMALDIÇOADO que é o CORS, sempre que eu me esbarrava com ele eu estava assim "-_-" ja que era denovo o mesmo problema, e algo que eu ja tinha resolvido, então um inimigo que voce ja conhece é menos assustador que um inimigo que voce não conhece, então eu so ia ali e ***puff*** desativei, sim eu sei que não é o ideal, mas tava com um monte de outra coisa ali, e uma URL que muda mais que roupa é dificil de lidar.
+  Mas denovo, DENOVO eu lidei com essa coisa que se chama CORS, no projeto que eu estou fazendo atualmente, pensei "vou usa javascript pois ele serve tanto pro front tanto pro back, e não vou ter tanta dor de cabeça assim" ~C O I T A D O~, foi tudo ocorrendo bem, eu fazendo minha Api ali bonitinha, ate que BUM problema no CORS.
+  "A tranquilo, deixa eu desativar aqui e... ue?" foi o que eu pensei, estava la, lindo e maravilhoso, o erro jorrando, mesmo eu tendo desativado o CORS pelos MILHARES de tutoriais e documentos com gente com o *MESMO ERRO*, e não era o erro convencional, nãooo, era um problema justamente quando eu fazia um **POST**, mas o **GET** funcionava que era uma maravilha, sem fala de que, funcionava em qualquer coisa sem ser navegador.
+  Minha solução pra isso? coloquei uma proxy, não sei o que é isso e planejo estudar um pouco sobre o que é, mas ate la, quero ver quais outros problemas me aguardam...
+  ##### Sempre é culpa do CORS?
+  Sim! depois desse tauma que eu passei, pra mim, e pra todo sempre, sempre, sempre vai ser culpa do CORS, um dia na faculdade, no trabalho nosso, eu falei.
+  > É sempre problema de CORS
+
+Pois a api do jovem não estava funcionando, ele chegou no dia seguinte, e adivinha, era problema do CORS, ele disse que amaldiçoei ele rimos muitos nesse dia, ~mentira tinha que resolver o CORS~
+
+##### 20 minutos de uma aventura
+Queria ter falado como fazer o front end, mas sinceramente, isso me rendeu uma historia ate que um pouco melhor, vou ve como funciona o proxy e ve se tem algum jeito de eu juntar os dois, ja que é javascript ne.
+ E outra, não seria mais interessante uma aplicação um pouco mais robusta que eu não precise mudar a url toda hora? fico preocupado com a questão de o que isso abre, e as vulnerabilidades, mas acho que depois vou acabar deixando, minha ideia é depois dessa base terminada os dias seguintes seja sobre manutenção de codigo e etc, espero que voces curtam!
