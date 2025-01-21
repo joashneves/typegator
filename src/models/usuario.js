@@ -11,9 +11,26 @@ module.exports = (sequelize, DataTypes) => {
   }
   Usuario.init(
     {
-      nome: DataTypes.STRING,
-      usuario: DataTypes.STRING,
-      descricao: DataTypes.STRING,
+      nome: {
+        type: DataTypes.STRING,
+        validate:{
+          is: {
+            args: /^[^0-9]*$/, // Regex que impede números
+            msg: "O nome não pode conter números.",
+          },
+        },
+      },
+      usuario: {
+        type: DataTypes.STRING,
+        unique: true,
+        validate: {
+          len: [4, 20], 
+          is: /^\S*$/, 
+        },
+      },
+      descricao: {
+        type: DataTypes.STRING,
+      },
       email: {
         type: DataTypes.STRING,
         validator: {
@@ -22,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       senha: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {

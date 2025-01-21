@@ -3,12 +3,13 @@ import icon from "../../assets/personaIcon.svg";
 import login from "../../assets/login.svg";
 import adicionar from "../../assets/botaoadicionar.svg";
 import lupa from "../../assets/lupa.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Header() {
   const [logado, setLogado] = useState(false);
   const [usuario, setUsuario] = useState(null); // Armazenar o nome do usuário logado
+  const location = useLocation(); // Monitora a mudança de rota
 
   useEffect(() => {
     const user = window.sessionStorage.getItem("usuario");
@@ -19,7 +20,7 @@ export default function Header() {
     } else {
       setLogado(false);
     }
-  }, []); // Colocando um array vazio como dependência para rodar apenas na montagem do componente
+  }, [location]); // Colocando um array vazio como dependência para rodar apenas na montagem do componente
 
   return (
     <div className={styles.cabecario}>

@@ -19,10 +19,21 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      titulo: DataTypes.STRING,
-      descricao: DataTypes.STRING,
+      titulo: {
+        type: DataTypes.STRING,
+        validate:{
+          len: [3,40],
+        },
+      },
+      descricao: {
+        type: DataTypes.STRING,
+        validate:{
+          len: [3,128],
+        },
+      },
       link: {
         type: DataTypes.STRING,
+        unique: true,
         validate: {
           isUrl: true,
         },

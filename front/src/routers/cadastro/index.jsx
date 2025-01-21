@@ -55,7 +55,7 @@ export default function Cadastro() {
             onChange={handleChange}
           />
         </div>
-        {error && <div className="error">{error}</div>}{" "}
+        {error && <div className={styles.error_message}>{error}</div>}{" "}
         {/* Exibe erro, se houver */}
         {message && <div className="success">{message}</div>}{" "}
         <div className={styles.cadastroInput}>

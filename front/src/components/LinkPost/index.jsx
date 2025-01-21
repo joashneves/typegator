@@ -15,7 +15,9 @@ export default function LinkPost({
   total_voto,
   usuario_id,
 }) {
+  
   const [usuarioNome, setUsuarioNome] = useState("");
+  const [maxLength, setMaxLength] = useState(127);
   console.log({ id, titulo, link, descricao, total_voto, usuario_id });
   const enviarVotoPositivo = () => {
     const usuarioLogado = window.sessionStorage.getItem("usuario");
@@ -38,15 +40,28 @@ export default function LinkPost({
     }
     useVotoNegativo(id, usuarioLogado, senhaLogado, tokenArmazenado);
   };
+  useEffect(() => {
+    // Função para atualizar o comprimento máximo baseado na largura da tela
+    const updateMaxLength = () => {
+      setMaxLength(window.innerWidth <= 768 ? 40 : 127);
+    };
+
+    // Configura o listener para mudanças de tamanho da tela
+    updateMaxLength(); // Chamar inicialmente
+    window.addEventListener("resize", updateMaxLength);
+
+    // Remover o listener quando o componente for desmontado
+    return () => window.removeEventListener("resize", updateMaxLength);
+  }, []);
 
   useEffect(() => {
     const userFetch = async () => {
-      const response = await axios.get(`/api/usuario/${id}`);
+      const response = await axios.get(`/api/usuario/${usuario_id}`);
       const data = response.data;
       setUsuarioNome(data.usuario);
     };
     userFetch();
-  }, []);
+  }, [usuario_id]);
 
   return (
     <div className={styles.componenteLink}>
@@ -72,9 +87,13 @@ export default function LinkPost({
           <h1 className={styles.linhaTitulo}>{titulo}</h1>
         </Link>
         <p className={styles.linhaDoLink}>
-          {link.length > 127 ? `${link.slice(0, 127)}...` : link}
+        {link.length > maxLength ? `${link.slice(0, maxLength)}...` : link}
         </p>
-        <div>{descricao.length > 128 ? `${descricao.slice(0, 128)}`: descricao}</div>
+        <div className={styles.linhaDaDescricao}>
+           {descricao.length > maxLength
+            ? `${descricao.slice(0, maxLength)}...`
+            : descricao}
+          </div>
         <div className={styles.criador}>Enviado por: {usuarioNome}</div>
       </div>
     </div>

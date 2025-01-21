@@ -34,7 +34,6 @@ export const useCadastrarUsuarioContext = () => {
         usuario_usuario: usuario,
         usuario_senha: senha,
       };
-
       // Enviando dados de login
       const response = await fetch("/api/login", {
         method: "PUT",
@@ -43,17 +42,12 @@ export const useCadastrarUsuarioContext = () => {
         },
         body: JSON.stringify(dadosLogin),
       });
-
       if (!response.ok) {
         throw new Error("Erro ao fazer login.");
       }
-
       const responseData = await response.json();
-
       // Verifica se o login foi bem-sucedido
       if (responseData.token) {
-        console.log("settar");
-
         // Salva as informações do usuário e o token no sessionStorage
         window.sessionStorage.setItem("usuario", usuario);
         window.sessionStorage.setItem("senha", senha);
@@ -66,8 +60,18 @@ export const useCadastrarUsuarioContext = () => {
         setError("Credenciais inválidas!");
       }
     } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      setError("Erro ao fazer login. Tente novamente.");
+      console.log(error.response)
+      if (error.response.status === 400) {
+        // Exibe os erros específicos enviados pelo backend
+        if (error.response.data.errors) {
+          setError(error.response.data.errors.join(" | "));
+        } else {
+          setError("Senha fraca!");
+        }
+      } else {
+        // Caso genérico
+        setError("Erro ao fazer login. Tente novamente.");
+      }
     } finally {
       setLoading(false);
     }
