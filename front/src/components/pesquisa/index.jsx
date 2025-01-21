@@ -1,6 +1,7 @@
 import { useState } from "react";
 import lupa from "../../assets/lupa.svg";
 import { usePesquisarContext } from "../../hooks/usePesquisarContext";
+import styles from './pesquisa.module.css';
 
 export default function Pesquisa() {
   const [termoPesquisa, setTermoPesquisa] = useState("");
@@ -12,32 +13,23 @@ export default function Pesquisa() {
 
   return (
     <>
-      <div style={{ position: "relative", display: "inline-block" }}>
+      <div className={styles.pesquisa_container}>
         <input
           type="text"
           placeholder="Pesquisar..."
-          style={{
-            paddingLeft: "30px", // Deixa espaço para o ícone
-            height: "35px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
+          className={styles.input_pesquisa}
           value={termoPesquisa}
           onChange={handleChange} // Atualiza o estado ao digitar
         />
         <img
           src={lupa}
           alt="lupa"
-          style={{
-            position: "absolute",
-            left: "8px", // Ajuste de acordo com a padding do input
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "20px",
-            height: "20px",
-          }}
+          className={styles.lupa_icon}
         />
       </div>
+
+      {/* Exibe o título somente se o termo de pesquisa estiver vazio */}
+      {!termoPesquisa && <h1 className={styles.titulo}>Últimas 15 postagens</h1>}
     </>
   );
 }

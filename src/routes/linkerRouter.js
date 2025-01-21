@@ -7,7 +7,7 @@ var cors = require("cors");
 const router = Router();
 
 router.get("/api/link", cors(), (req, res) =>
-  linkerController.pegaTodos(req, res),
+  linkerController.listarDezPostagem(req, res),
 );
 router.get(
   "/api/link/usuarios/:usuarios",

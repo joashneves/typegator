@@ -12,6 +12,7 @@ export default function Home() {
     <>
       <br />
       <Pesquisa />
+      
       <br />
       <div className={styles.postCarregador}>
         {links.length === 0 ? (

@@ -22,6 +22,18 @@ class LinkerServices extends Services {
       throw error;
     }
   }
+  async buscarDez() {
+    try {
+      const linksFiltrados = await dataSource[this.model].findAll({
+        order: [["createdAt", "DESC"]], // Ordena pela coluna 'createdAt' em ordem decrescente
+        limit: 15, // Limita o número de resultados para 10
+      });
+      return linksFiltrados || [];
+    } catch (error) {
+      console.error("Erro ao procurar link:", error.message);
+      throw error;
+    }
+  }
   async procurarLinkParamentro(filtrotitulo) {
     try {
       const whereCondition = filtrotitulo

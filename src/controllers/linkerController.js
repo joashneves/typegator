@@ -35,6 +35,16 @@ class LinkerController extends Controller {
       return res.status(500).json({ erro: error.message });
     }
   }
+  async listarDezPostagem(req, res){
+    try {
+      const linksFiltrados =
+        await linkerServices.buscarDez();
+      return res.status(201).json(linksFiltrados);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ erro: error.message });
+    }
+  }
   async criarPostagemLink(req, res) {
     const dadosDoLink = req.body;
     try {
