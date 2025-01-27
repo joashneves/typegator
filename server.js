@@ -2,7 +2,6 @@ const dotenv = require("dotenv").config({ path: "./.env" });
 const app = require("./src/app.js");
 const manipulador404 = require("./src/middlewares/manipulador404.js");
 const manipuladorDeErros = require("./src/middlewares/manipuladorDeErros.js");
-const { createServer: createViteServer } = require("vite");
 const express = require("express");
 const { auth } = require("express-openid-connect");
 const path = require("path");
