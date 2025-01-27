@@ -5,3 +5,21 @@
 .botao:hover {
   cursor: pointer;
 }
+
+.buscar {
+  height: 24px;
+}
+.postCarregador {
+  display: flex;
+  margin-left: 2rem;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 768px) {
+  .postCarregador {
+    display: flex;
+    margin-left: 0.5rem;
+    align-items: flex-start;
+  }
+}
