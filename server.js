@@ -2,6 +2,7 @@ const dotenv = require("dotenv").config({ path: "./.env" });
 const app = require("./src/app.js");
 const manipulador404 = require("./src/middlewares/manipulador404.js");
 const manipuladorDeErros = require("./src/middlewares/manipuladorDeErros.js");
+const { createServer: createViteServer } = require("vite");
 const express = require("express");
 const { auth } = require("express-openid-connect");
 const path = require("path");
@@ -35,7 +36,7 @@ function setCorsHeaders(req, res, next) {
 app.use(express.static(buildDir));
 
 // Rota para a raiz (/) que serve o index.html
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(buildDir, "index.html"));
 });
 

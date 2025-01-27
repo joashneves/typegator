@@ -78,7 +78,7 @@ export default function Perfil() {
           {exibirAlterarSenha && <AlterarSenha />}
         </>
       )}
-
+        <div className={styles.postCarregador}>
       {carregando ? (
         <p>Carregando...</p>
       ) : links.length === 0 ? (
@@ -86,16 +86,17 @@ export default function Perfil() {
       ) : (
         links.map((link, index) => (
           <LinkPost
-            key={index}
-            id={link.id}
-            titulo={link.titulo}
-            descricao={link.descricao}
-            link={link.link}
-            usuario_id={link.usuario_id}
-            total_voto={link.total_voto}
+          key={index}
+          id={link.id}
+          titulo={link.titulo}
+          descricao={link.descricao}
+          link={link.link}
+          usuario_id={link.usuario_id}
+          total_voto={link.total_voto}
           />
         ))
       )}
+      </div>
     </div>
   );
 }

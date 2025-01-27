@@ -4,10 +4,11 @@ import react from "@vitejs/plugin-react";
 // Carrega variáveis de ambiente
 const API_URL = process.env.VITE_API_URL || "http://localhost:3000";
 
-// https://vite.dev/config/
+// Configuração do Vite
 export default defineConfig({
   plugins: [react()],
   server: {
+    middlewareMode: true, // Configuração para SSR
     proxy: {
       "/api": {
         target: API_URL, // URL do backend
