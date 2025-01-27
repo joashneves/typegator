@@ -76,5 +76,13 @@
   .linhaDaDescricao {
     font-size: 0.9rem; /* Ajuste para caber melhor */
   }
+    .componenteLink {
+      white-space: normal;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      font-size: 1rem; /* Reduz o tamanho da fonte */
+      padding: 10px; /* Adiciona um padding menor */
+    }
+  
 }
 
