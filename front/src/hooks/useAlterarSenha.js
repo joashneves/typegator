@@ -25,17 +25,17 @@ export default function useAlterarSenha() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       console.log(response);
       if (response.status === 201) {
         setSuccess(true);
         alert("senha Alterada com sucesso");
-        
-    window.sessionStorage.removeItem("usuario");
-    window.sessionStorage.removeItem("senha");
-    window.sessionStorage.removeItem("token");
-        navigate('/')
+
+        window.sessionStorage.removeItem("usuario");
+        window.sessionStorage.removeItem("senha");
+        window.sessionStorage.removeItem("token");
+        navigate("/");
       } else {
         setError("Erro ao alterar a senha. Tente novamente.");
       }

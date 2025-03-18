@@ -7,6 +7,5 @@ module.exports = {
       type: Sequelize.DATE,
     });
   },
-  async down(queryInterface, Sequelize) {
-  },
+  async down(queryInterface, Sequelize) {},
 };
