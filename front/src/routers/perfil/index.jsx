@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import LinkPost from "../../components/LinkPost";
 import AlterarSenha from "../../components/alterarSenha";
-import styles from './perfil.module.css';
+import styles from "./perfil.module.css";
 
 export default function Perfil() {
   const { usuario } = useParams(); // Captura o parâmetro "usuario" da URL
@@ -63,39 +63,41 @@ export default function Perfil() {
 
       {perfil && (
         <>
-          <input 
+          <input
             className={styles.botao}
-            type="button" 
-            value="Deslogar" 
-            onClick={handleDeslogar} 
+            type="button"
+            value="Deslogar"
+            onClick={handleDeslogar}
           />
-          <input 
+          <input
             className={styles.botao}
-            type="button" 
-            value={exibirAlterarSenha ? "Fechar Alterar Senha" : "Alterar Senha"} 
-            onClick={toggleAlterarSenha} 
+            type="button"
+            value={
+              exibirAlterarSenha ? "Fechar Alterar Senha" : "Alterar Senha"
+            }
+            onClick={toggleAlterarSenha}
           />
           {exibirAlterarSenha && <AlterarSenha />}
         </>
       )}
-        <div className={styles.postCarregador}>
-      {carregando ? (
-        <p>Carregando...</p>
-      ) : links.length === 0 ? (
-        <p>Você não está autorizado a olhar esse perfil</p>
-      ) : (
-        links.map((link, index) => (
-          <LinkPost
-          key={index}
-          id={link.id}
-          titulo={link.titulo}
-          descricao={link.descricao}
-          link={link.link}
-          usuario_id={link.usuario_id}
-          total_voto={link.total_voto}
-          />
-        ))
-      )}
+      <div className={styles.postCarregador}>
+        {carregando ? (
+          <p>Carregando...</p>
+        ) : links.length === 0 ? (
+          <p>Você não está autorizado a olhar esse perfil</p>
+        ) : (
+          links.map((link, index) => (
+            <LinkPost
+              key={index}
+              id={link.id}
+              titulo={link.titulo}
+              descricao={link.descricao}
+              link={link.link}
+              usuario_id={link.usuario_id}
+              total_voto={link.total_voto}
+            />
+          ))
+        )}
       </div>
     </div>
   );

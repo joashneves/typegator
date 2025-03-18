@@ -60,7 +60,7 @@ export const useCadastrarUsuarioContext = () => {
         setError("Credenciais inválidas!");
       }
     } catch (error) {
-      console.log(error.response)
+      console.log(error.response);
       if (error.response.status === 400) {
         // Exibe os erros específicos enviados pelo backend
         if (error.response.data.errors) {

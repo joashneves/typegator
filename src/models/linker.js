@@ -21,14 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       titulo: {
         type: DataTypes.STRING,
-        validate:{
-          len: [3,40],
+        validate: {
+          len: [3, 40],
         },
       },
       descricao: {
         type: DataTypes.STRING,
-        validate:{
-          len: [3,128],
+        validate: {
+          len: [3, 128],
         },
       },
       link: {

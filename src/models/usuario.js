@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       nome: {
         type: DataTypes.STRING,
-        validate:{
+        validate: {
           is: {
             args: /^[^0-9]*$/, // Regex que impede números
             msg: "O nome não pode conter números.",
@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         unique: true,
         validate: {
-          len: [4, 20], 
-          is: /^\S*$/, 
+          len: [4, 20],
+          is: /^\S*$/,
         },
       },
       descricao: {

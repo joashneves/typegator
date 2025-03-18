@@ -20,10 +20,10 @@ export default function App() {
           <Route Component={Cadastro} path="/cadastro" />
           <Route Component={Login} path="/login" />
           <Route Component={Post} path="/post" />
-          <Route Component={sobre} path="/sobre"/>
+          <Route Component={sobre} path="/sobre" />
           <Route Component={Perfil} path="/profile/:usuario" />
         </Routes>
-        <Footer/>
+        <Footer />
       </PesquisaProvider>
     </BrowserRouter>
   );
